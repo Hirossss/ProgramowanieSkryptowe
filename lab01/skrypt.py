@@ -14,4 +14,19 @@ def display(args, show_index):
     print("Stop")
 
 
-display(sys.argv, False)
+def run(moves,move_descriptions):
+    result=[]
+    for x in moves:
+        if x in move_descriptions:
+            result.append(move_descriptions[x])
+    return result
+        
+
+
+
+
+#display(sys.argv, False)
+
+
+move_descp = {'f': "Zwierzak idzie do przodu", 'b': "Zwierzak idzie do tyłu", 'l': "Zwierzak skręca w lewo", 'r': "Zwierzak skręca w prawo"}
+print(run(sys.argv,move_descp))
