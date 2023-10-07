@@ -25,11 +25,13 @@ def run(moves, move_descriptions):
 # display(sys.argv, False)
 
 
-move_descp = {
-    "f": "Zwierzak idzie do przodu",
-    "b": "Zwierzak idzie do tyłu",
-    "l": "Zwierzak skręca w lewo",
-    "r": "Zwierzak skręca w prawo",
-}
+if __name__ == "__main__":
 
-display(run(sys.argv, move_descp),False)
+    move_descp = {
+        "f": "Zwierzak idzie do przodu",
+        "b": "Zwierzak idzie do tyłu",
+        "l": "Zwierzak skręca w lewo",
+        "r": "Zwierzak skręca w prawo",
+    }
+
+    display(run(sys.argv, move_descp), False)
