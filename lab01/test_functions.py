@@ -12,14 +12,14 @@ def test_display_without_index(capsys):
     args = ["arg1", "arg2"]
     display(args, False)
     captured = capsys.readouterr()
-    assert captured.out == "arg1\narg2\n"
+    assert captured.out == "Start\narg1\narg2\nStop\n"
 
 
 def test_display_with_index(capsys):
     args = ["arg1", "arg2"]
     display(args, True)
     captured = capsys.readouterr()
-    assert captured.out == "args[0] = arg1\nargs[1] = arg2\n"
+    assert captured.out == "Start\nargs[0] = arg1\nargs[1] = arg2\nStop\n"
 
 
 def test_run(sample_moves):
