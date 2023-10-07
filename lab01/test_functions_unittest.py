@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import patch
 import io
-import sys
 
 # Import the functions to be tested
 from skrypt import display, run
