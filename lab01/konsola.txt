@@ -1,0 +1,19 @@
+>>> 2+2
+4
+>>> 2+2.0
+4.0
+>>> 2+'2' 
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+>>> '2'+'2' 
+'22'
+>>> zmienna = 2
+>>> type(zmienna) 
+<class 'int'>
+>>> zmienna = '2'  
+>>> type(zmienna) 
+<class 'str'>
+
+Odp1: silna typizacja, nie mozemy mieszac typow.
+Odp2: typowanie dynamiczne, nie nadajemy typu przy okreslaniu zmiennej.
