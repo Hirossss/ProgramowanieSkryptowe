@@ -3,5 +3,12 @@
         "lab01"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./lab01",
+        "-p",
+        "test_*.py"
+    ]
 }
