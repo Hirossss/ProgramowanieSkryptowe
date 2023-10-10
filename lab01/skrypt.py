@@ -26,7 +26,6 @@ def run(moves, move_descriptions):
 
 
 if __name__ == "__main__":
-
     move_descp = {
         "f": "Zwierzak idzie do przodu",
         "b": "Zwierzak idzie do tyłu",
@@ -34,4 +33,4 @@ if __name__ == "__main__":
         "r": "Zwierzak skręca w prawo",
     }
 
-    display(run(sys.argv, move_descp), False)
+    display(run(sys.argv, move_descp), False)   # mozna tez sprawdzic dla true
