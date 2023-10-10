@@ -3,7 +3,7 @@ from skrypt import display, run
 
 
 @pytest.fixture
-def sample_moves():  # to musi byc na poczatku bo program wlacza wszystkie testy na raz i pozniej nie widzi tej def
+def sample_moves():  # to musi byc na poczatku bo program wlacza wszystkie testy na raz i pozniej nie widzi tej def  # noqa: E501
     return ["f", "b", "l", "r"]
 
 
