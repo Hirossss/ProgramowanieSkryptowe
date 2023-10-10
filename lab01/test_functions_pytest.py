@@ -21,7 +21,7 @@ def test_display_with_index(capsys):
     captured = capsys.readouterr()
     assert captured.out == "Start\nargs[0] = arg1\nargs[1] = arg2\nStop\n"
 
-
+'''
 def test_run(sample_moves):
     move_descriptions = {
         "f": "Zwierzak idzie do przodu",
@@ -31,6 +31,22 @@ def test_run(sample_moves):
     }
     result = run(sample_moves, move_descriptions)
     assert result == [
+        "Zwierzak idzie do przodu",
+        "Zwierzak idzie do tyłu",
+        "Zwierzak skręca w lewo",
+        "Zwierzak skręca w prawo",
+    ]
+'''
+def test_run(capsys):
+    move_descriptions = {
+        "f": "Zwierzak idzie do przodu",
+        "b": "Zwierzak idzie do tyłu",
+        "l": "Zwierzak skręca w lewo",
+        "r": "Zwierzak skręca w prawo",
+    }
+    run(sample_moves, move_descriptions)
+    captured = capsys.readouterr()
+    assert captured.out == [
         "Zwierzak idzie do przodu",
         "Zwierzak idzie do tyłu",
         "Zwierzak skręca w lewo",
