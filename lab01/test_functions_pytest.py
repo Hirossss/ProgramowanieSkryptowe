@@ -3,7 +3,7 @@ from skrypt import display, run
 
 
 @pytest.fixture
-def sample_moves():                 # to musi byc na poczatku bo program wlacza wszystkie testy na raz i pozniej nie widzi tej def
+def sample_moves():  # to musi byc na poczatku bo program wlacza wszystkie testy na raz i pozniej nie widzi tej def
     return ["f", "b", "l", "r"]
 
 
@@ -20,6 +20,7 @@ def test_display_with_index(capsys):
     captured = capsys.readouterr()
     assert captured.out == "Start\nargs[0] = arg1\nargs[1] = arg2\nStop\n"
 
+
 def test_run(sample_moves):
     move_descriptions = {
         "f": "Zwierzak idzie do przodu",
@@ -34,7 +35,3 @@ def test_run(sample_moves):
         "Zwierzak skręca w lewo",
         "Zwierzak skręca w prawo",
     ]
-
-
-
-
