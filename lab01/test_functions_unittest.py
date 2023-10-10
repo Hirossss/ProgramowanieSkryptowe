@@ -7,12 +7,12 @@ from skrypt import display, run
 
 
 class TestDisplayFunction(unittest.TestCase):
-    @patch("sys.stdout", new_callable=io.StringIO)
+    @patch("sys.stdout", new_callable=io.StringIO)  # StringIO potrzebny zeby mock_stdout dobrze dzialal
     def test_display_show_index_true(self, mock_stdout):
         args = ["a", "b", "c"]
         show_index = True
         display(args, show_index)
-        output = mock_stdout.getvalue()
+        output = mock_stdout.getvalue() # przechwytuje wszystkie stringi z stdout (z ang. mock - przedrzeźnia wynik funkcji)
         expected_output = "Start\nargs[0] = a\nargs[1] = b\nargs[2] = c\nStop\n"
         self.assertEqual(output, expected_output)
 
@@ -24,7 +24,7 @@ class TestDisplayFunction(unittest.TestCase):
         output = mock_stdout.getvalue()
         expected_output = "Start\na\nb\nc\nStop\n"
         self.assertEqual(output, expected_output)
-
+    
 
 class TestRunFunction(unittest.TestCase):
     def test_run(self):
