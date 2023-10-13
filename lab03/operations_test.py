@@ -48,16 +48,22 @@ if importlib.util.find_spec("pytest") is not None:
         assert operations.all_characters_in_even_positions("A") == "A"
 
     def test_merge_characters_and_duplicate():  # moj test
-        assert operations.merge_characters_and_duplicate("Programowanie Skryptowe") == "PwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPw"  # noqa: E501
-        assert operations.merge_characters_and_duplicate("Systemy Operacyjne") == "SnSnSnSnSnSnSnSnSnSnSnSnSnSnSnSnSnSn"
-        assert operations.merge_characters_and_duplicate("F") == ""
+        assert (
+            operations.merge_characters_and_duplicate("Programowanie Skryptowe")
+            == "PwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPw"
+        )  # noqa: E501
+        assert (
+            operations.merge_characters_and_duplicate("Systemy Operacyjne")
+            == "SnSnSnSnSnSnSnSnSnSnSnSnSnSnSnSnSnSn"
+        )  # noqa: E501
+        assert operations.merge_characters_and_duplicate("F") == "F"
 
 else:
     # Użyj testów Unittest
-    # Jeżeli nazwa importowanego modułu jest znana w momencie tworzenia skryptu, to można go zaimportować, na przykład, tak:
+    # Jeżeli nazwa importowanego modułu jest znana w momencie tworzenia skryptu, to można go zaimportować, na przykład, tak:  # noqa: E501
     import unittest
 
-    # Jeśli nazwa importowanego modułu jest znana dopiero podczas działania / uruchamiania skryptu — np. jest przekazywana w linii komend (jest napisem), to trzeba go zaimportować w następujący sposób:
+    # Jeśli nazwa importowanego modułu jest znana dopiero podczas działania / uruchamiania skryptu — np. jest przekazywana w linii komend (jest napisem), to trzeba go zaimportować w następujący sposób:  # noqa: E501
     # unittest = importlib.import_module("unittest")
     class Test_TestTextOperations(unittest.TestCase):
         def test_first_character(self):
@@ -103,6 +109,17 @@ else:
                 operations.all_characters_in_even_positions("12345"), "135"
             )
             self.assertEqual(operations.all_characters_in_even_positions("A"), "A")
+
+        def test_merge_characters_and_duplicate(self):
+            self.assertEqual(
+                operations.merge_characters_and_duplicate("Programowanie Skryptowe"),
+                "PwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPwPw",
+            )
+            self.assertEqual(
+                operations.merge_characters_and_duplicate("Systemy Operacyjne"),
+                "SnSnSnSnSnSnSnSnSnSnSnSnSnSnSnSnSnSn",
+            )
+            self.assertEqual(operations.merge_characters_and_duplicate("F"), "F")
 
     if __name__ == "__main__":
         unittest.main()

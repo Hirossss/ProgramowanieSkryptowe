@@ -85,8 +85,5 @@ def merge_characters_and_duplicate(string):
 
 
 def merge_characters_and_duplicate(string):
-    return (
-        (first_character(string) + penultimate_character(string)) * len(string)
-        if len(string) > 1
-        else ""
-    )
+    return (first_character(string) + penultimate_character(string)) * len(string)
+    
