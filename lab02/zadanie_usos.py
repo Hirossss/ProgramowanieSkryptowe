@@ -28,7 +28,7 @@ def usos(args):
     if args[-1] != "--wykaz_ocen":
         print("Please provide --wykaz_ocen at the end to generate the report.")
         return
-    intro = "----------+----------+-------+\nPrzedmiot | Studenci | Oceny |\n----------+----------+-------+"
+    intro = "----------+----------+-------+\nPrzedmiot | Studenci | Oceny |\n----------+----------+-------+"  # noqa: E501
     print(intro)
     for i in range(1, len(args) - 1, 3):
         przedmiot = sys.argv[i]
