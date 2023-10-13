@@ -39,9 +39,3 @@ def usos(args):
 
 if __name__ == "__main__":
     usos(sys.argv)
-
-'''
-Skrypt ignoruje przekroczenie limitu przez uzytkownika przy wprowadzaniu do danego przedmiotu
-Task:
-1. Zbadac czy user nie moze naduzyc czegos w linii komend.
-'''
