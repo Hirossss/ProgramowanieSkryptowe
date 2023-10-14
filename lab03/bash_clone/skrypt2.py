@@ -6,14 +6,13 @@ allowed_options_grep = ["i", "w"]
 
 
 def skrypt2(args):
-    if args[0] == "cut":
+    if args[0] == "cut":    # mozna to tez zrobic przy pomocy case
         from cut import cut_function
 
         d_ind = args.index(
             "-d"
-        )  # mozna to podac na sztywno jesli zakladamy ze bash dopuszcza jedna skladnie
+        )  # mozna to podac na sztywno jesli zakladamy ze bash dopuszcza jedna skladnie, ale wole dowolnosc  # noqa: E501
         f_ind = args.index("-f")
-        print("\n")
         cut_function(args[d_ind + 1], args[f_ind + 1], args[5:])
     elif args[0] == "grep":
         from grep import grep_function
