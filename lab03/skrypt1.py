@@ -3,13 +3,14 @@ from operations import *
 
 
 def skrypt1(args):
-    print(first_character(args))
-    print(first_two_characters(args))
-    print(all_characters_except_first_two(args))
-    print(penultimate_character(args))
-    print(last_three_characters(args))
-    print(all_characters_in_even_positions(args))
-    print(merge_characters_and_duplicate(args))
+    concatenated_string = " ".join(args)
+    print(first_character(concatenated_string))
+    print(first_two_characters(concatenated_string))
+    print(all_characters_except_first_two(concatenated_string))
+    print(penultimate_character(concatenated_string))
+    print(last_three_characters(concatenated_string))
+    print(all_characters_in_even_positions(concatenated_string))
+    print(merge_characters_and_duplicate(concatenated_string))
 
 
 if __name__ == "__main__":
