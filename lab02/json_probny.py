@@ -6,7 +6,7 @@ import json
 try:
     with open("oceny.json", "r") as file:
         oceny = json.load(file)
-except (FileNotFoundError, json.JSONDecodeError):
+except (FileNotFoundError, json.JSONDecodeError):   # drugi error dotyczy pustego pliku json
     oceny = {}
 
 
