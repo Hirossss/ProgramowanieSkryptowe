@@ -5,6 +5,10 @@ def skrypt2(args):
     if args[0] == "cut":  # mozna to tez zrobic przy pomocy case
         from cut import cut_function
 
+        if "-d" not in args or "-f" not in args:
+            print("Nie podano wystarczajaco argumentow.")
+            return
+
         d_ind = args.index("-d")
         f_ind = args.index("-f")
         cut_function(args[d_ind + 1], args[f_ind + 1], args[5:])
