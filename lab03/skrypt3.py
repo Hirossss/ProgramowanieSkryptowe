@@ -1,43 +1,59 @@
 import argparse
 
 
-# Create the argparse parser
-parser = argparse.ArgumentParser(description="Bash Clone")
+parser = argparse.ArgumentParser(description="Bash Clone and operations")
 
-# Define subparsers for the different commands
-subparsers = parser.add_subparsers(dest="command")
 
-# Subparser for 'grep' command
-grep_parser = subparsers.add_parser("grep", help="Use the grep functionality from bash on given text")
+subparsers = parser.add_subparsers(  # tworze kolejne podinstancje parserow
+    dest="command"
+)
+
+
+grep_parser = subparsers.add_parser(  # subparser dla 'grep'
+    "grep", help="Use the grep functionality from bash on given text"
+)
 grep_parser.add_argument("word", help="Word to search")
-grep_parser.add_argument("text", help="Text in which we look for things", nargs='*')
-grep_parser.add_argument("-i", action="store_true", help="Case-insensitive search (i_option)")
-grep_parser.add_argument("-w", action="store_true", help="Whole word search (w_option)")
+grep_parser.add_argument("text", help="Text in which we look for things", nargs="*")
+grep_parser.add_argument(
+    "-i",
+    action="store_true",  # jesli sie pojawi w command line to zapisujemy jako true  # noqa: E501
+    help="Case-insensitive search",
+)
+grep_parser.add_argument("-w", action="store_true", help="Whole word search")
 
-# Subparser for 'cut' command
-cut_parser = subparsers.add_parser("cut", help="Use the cut functionality from bash on given text")
-cut_parser.add_argument("-d", required=True, help="Delimiter")
+
+cut_parser = subparsers.add_parser(  # subparser dla 'cut'
+    "cut", help="Use the cut functionality from bash on given text"
+)
+cut_parser.add_argument(
+    "-d",
+    required=True,  # required=True zapewnia nas ze user musi podac wartosc dla danej opcji  # noqa: E501
+    help="Delimiter",
+)
 cut_parser.add_argument("-f", required=True, type=int, help="Field")
-cut_parser.add_argument("text", help="Text to cut", nargs='*')
+cut_parser.add_argument("text", help="Text to cut", nargs="*")
 
-# Subparser for 'operations' command
-operations_parser = subparsers.add_parser("operations", help="Perform basic operations on given string")
+
+operations_parser = subparsers.add_parser(  # subparser dla operations.py
+    "operations", help="Perform basic operations on given string"
+)
 operations_parser.add_argument("text", nargs="*", help="Text for operations")
 
-# Parse the command-line arguments
-args = parser.parse_args()
 
-# Determine the selected command and execute the corresponding script
+args = parser.parse_args()  # parsujemy command line'a
+
+
 if args.command == "grep":
-    # Determine the values of i_option and w_option based on command-line arguments
-    i_option = args.i
+    i_option = args.i  # True lub False jesli istnieje takowa
     w_option = args.w
     from bash_clone.grep import *
-    # Call grep_function with the appropriate arguments
+
     grep_function(i_option, w_option, args.word, args.text)
 elif args.command == "cut":
     from bash_clone.cut import *
-    cut_function(args.d, args.f,args.text)
+
+    cut_function(args.d, args.f, args.text)
 elif args.command == "operations":
     from skrypt1 import skrypt1
+
     skrypt1(args.text)
