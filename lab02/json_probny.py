@@ -1,12 +1,14 @@
 import sys
 import json
 
-# Wczytaj dane z pliku JSON (jeśli istnieje) lub utwórz nowy pusty słownik
 
-try:
+try:  # wczytuje dane z pliku json zeby ew je wyswietlic przy pomocy --wykaz_ocen
     with open("oceny.json", "r") as file:
         oceny = json.load(file)
-except (FileNotFoundError, json.JSONDecodeError):   # drugi error dotyczy pustego pliku json
+except (
+    FileNotFoundError,
+    json.JSONDecodeError,  # drugi error dotyczy pustego pliku json
+):
     oceny = {}
 
 
@@ -49,9 +51,10 @@ def usos(args):
         add_grade(przedmiot, student, ocena)
     display_grades()
 
-    # Zapis danych do pliku oceny.json
-    with open("oceny.json", "w") as file:
-        json.dump(oceny, file, indent=4)    # indent dodaje spacje zeby bylo bardziej czytelne
+    with open("oceny.json", "w") as file:   # zapisujemy zmiany do pliku json
+        json.dump(
+            oceny, file, indent=4   # indent dodaje spacje zeby bylo bardziej czytelne w oceny.json
+        )  
 
 
 if __name__ == "__main__":
