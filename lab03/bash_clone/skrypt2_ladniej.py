@@ -1,7 +1,7 @@
 import sys
 
 
-def skrypt2(args):
+def skrypt2(args):  # faza refactor
     match args[0]:
         case "cut":
             from cut import cut_function
