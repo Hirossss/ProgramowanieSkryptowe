@@ -2,7 +2,7 @@ import sys
 
 
 def skrypt2(args):
-    if args[0] == "cut":  # mozna to tez zrobic przy pomocy case
+    if args[0] == "cut":  # mozna to tez zrobic przy pomocy case, ale na razie faza zielona  # noqa: E501
         from cut import cut_function
 
         if "-d" not in args or "-f" not in args:
