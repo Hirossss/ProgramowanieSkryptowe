@@ -14,7 +14,9 @@ def skrypt1(args):
 
 
 if __name__ == "__main__":
+    '''
     concatenated_string = " ".join(
         sys.argv[1:]
     )  # to allow more than one word in terminal
-    skrypt1(concatenated_string)
+    '''
+    skrypt1(sys.argv[1:])
