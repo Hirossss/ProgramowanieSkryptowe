@@ -9,9 +9,9 @@ class Vector2d:
     def __eq__(self, other):
         if not isinstance(other, Vector2d):
             # don't attempt to compare against unrelated types
-            return NotImplemented
+            return False
 
-        return self.__x == other.__x and self.__x == other.__y
+        return self.__x == other.__x and self.__y == other.__y
 
     def get_info(self):
         return f'Przypisany atrybut x: {self.__x},przypisany atrybut y: {self.__y}'
