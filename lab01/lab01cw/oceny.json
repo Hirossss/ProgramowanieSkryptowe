@@ -1,0 +1,16 @@
+{
+    "Matematyka": {
+        "Kowalski_Jan": [
+            3.0,
+            3.5
+        ],
+        "Nowak_Anna": [
+            3.5
+        ]
+    },
+    "Fizyka": {
+        "Kowalski_Jan": [
+            5.0
+        ]
+    }
+}
