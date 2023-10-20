@@ -13,6 +13,9 @@ class Vector2d:
 
         return self.__x == other.__x and self.__x == other.__y
 
+    def get_info(self):
+        return f'Przypisany atrybut x: {self.__x},przypisany atrybut y: {self.__y}'
+
     def add(self, other_Vector2d):
         new_vector = Vector2d(
             self.__x + other_Vector2d.__x, self.__y + other_Vector2d.__y
