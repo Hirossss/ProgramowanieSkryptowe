@@ -3,7 +3,7 @@ from MoveDirection import MoveDirection
 class OptionsParser:
     @staticmethod
     def wejscie(text_str):
-        text = text_str.replace(' ','')
+        text=text_str.split(" ")
         result = []
         for option in text:
             if option == "f":
@@ -17,3 +17,8 @@ class OptionsParser:
             else: 
                 continue
         return result
+    
+'''
+> py -i OptionsParser.py
+>>> print(OptionsParser.wejscie("f a bb r l"))
+'''
