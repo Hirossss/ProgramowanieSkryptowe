@@ -7,17 +7,14 @@ parser.add_argument("file", help="Path to the input file")
 
 
 def parse_file(file_path):
-    subject_dict = {}  # Initialize an empty dictionary
+    subject_dict = {}
 
-    # Open the file and read its content
     with open(file_path, "r") as file:
         lines = file.readlines()
 
     for line in lines:
-        # Split each line by ':' to separate the subject and its corresponding value
         parts = line.strip().split(":")
 
-        # Check if the line contains two parts (subject and value)
         if len(parts) == 2:
             subject = parts[0].strip()
             value = int(parts[1].strip())
@@ -70,7 +67,6 @@ def remove_grade(input_str):
             else:
                 print(f"{subject} - no such subject or student")
     remove_students_with_no_grades()
-    
 
 
 def add_grade(input_str, przedmioty):
