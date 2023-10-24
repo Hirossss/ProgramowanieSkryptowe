@@ -34,7 +34,6 @@ if __name__ == "__main__":
         3: "Zwierzak skręca w prawo",
     }
 
-    options = OptionsParser()
-    moves_list = options.wejscie(sys.argv[1:])
+    moves_list = OptionsParser.wejscie(sys.argv)
 
     display(run(moves_list, move_descp), False)  # mozna tez sprawdzic dla true
