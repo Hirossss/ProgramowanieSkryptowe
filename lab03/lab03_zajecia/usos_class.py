@@ -1,5 +1,5 @@
-from Subject import Subject
-from Student import Student
+from lab03.lab03_zajecia.Subject import Subject
+from lab03.lab03_zajecia.Student import Student
 
 
 Matematyka = Subject("Matematyka", 2)
