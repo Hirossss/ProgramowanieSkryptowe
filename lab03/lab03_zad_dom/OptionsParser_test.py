@@ -1,6 +1,6 @@
 import unittest
-from MoveDirection import MoveDirection
-from OptionsParser import OptionsParser
+from lab03.lab03_zad_dom.MoveDirection import MoveDirection
+from lab03.lab03_zad_dom.OptionsParser import OptionsParser
 
 
 class TestOptionsParser(unittest.TestCase):

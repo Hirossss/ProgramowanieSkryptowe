@@ -1,4 +1,4 @@
-from MoveDirection import MoveDirection
+from lab03.lab03_zad_dom.MoveDirection import MoveDirection
 
 class OptionsParser:
     @staticmethod

@@ -1,5 +1,5 @@
 import unittest
-from Vector2d import Vector2d
+from lab03.lab03_zad_dom.Vector2d import Vector2d
 
 class TestVector2d(unittest.TestCase):
     def setUp(self):

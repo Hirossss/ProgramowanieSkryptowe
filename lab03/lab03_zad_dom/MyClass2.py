@@ -8,7 +8,7 @@ Wersja: 1.0.1
 Opis: Klasa do ćwiczenia 3 zawierająca tylko metody specjalne.
 """
 import sys
-from helper import methodBody
+from lab03.lab03_zad_dom.helper import methodBody
 class MyClass2:
     def __new__(cls):
         print(

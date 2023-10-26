@@ -8,7 +8,7 @@ Wersja: 1.0
 Opis: Klasa do ćwiczenia 3 — nie zawiera metod specjalnych.
 """
 import sys
-from helper import methodBody
+from lab03.lab03_zad_dom.helper import methodBody
 class MyClass1:
     def instanceMethod(self):
         print(methodBody(id(self), sys._getframe().f_code.co_name))
