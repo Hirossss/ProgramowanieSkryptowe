@@ -1,7 +1,6 @@
-#from typing import Self
+# from typing import Self
 from enum import Enum
 from Vector2d import Vector2d
-
 
 
 class MapDirection(Enum):
@@ -12,13 +11,13 @@ class MapDirection(Enum):
 
     def __str__(self) -> str:
         return self.value
-    
-    def next(self) -> 'MapDirection':
+
+    def next(self) -> "MapDirection":
         directions = list(MapDirection)
         next_index = (directions.index(self) + 1) % len(directions)
         return directions[next_index]
-    
-    def previous(self) -> 'MapDirection':
+
+    def previous(self) -> "MapDirection":
         directions = list(MapDirection)
         next_index = (directions.index(self) - 1) % len(directions)
         return directions[next_index]
