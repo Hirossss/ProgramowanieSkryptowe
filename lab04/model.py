@@ -49,6 +49,7 @@ class Animal:
 
     def __repr__(self) -> str:
         return str(self)
+    
 
     def isAt(self, position: Vector2d) -> bool:
         return self.position == position

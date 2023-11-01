@@ -12,6 +12,9 @@ class Vector2d:
             return False
 
         return self.__x == other.__x and self.__y == other.__y
+    
+    def __hash__(self) -> int:
+        return hash((self.__x,self.__y))
 
     def get_info(self):
         return f"Przypisany atrybut x: {self.__x},przypisany atrybut y: {self.__y}"
