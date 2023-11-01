@@ -1,6 +1,10 @@
 # from typing import Self
+from decimal import DefaultContext
 from enum import Enum
+
 from Vector2d import Vector2d
+from MoveDirection import MoveDirection
+
 
 
 class MapDirection(Enum):
@@ -33,3 +37,22 @@ class MapDirection(Enum):
             return Vector2d(1, 0)
         else:
             return NotImplemented
+
+class Animal:
+    
+    def __init__(self, vector: Vector2d, orientation: MapDirection=MapDirection.NORTH) -> None:
+        self.position = vector
+        self.orientation = orientation
+
+    def __str__(self) -> str:
+        return f'{self.position} {self.orientation}'
+    
+    def __repr__(self) -> str:
+        return str(self)
+    
+    def isAt(self, position: Vector2d) -> bool:
+        return self.position == position
+
+    def move(self, direction: MoveDirection) -> None:
+        
+
