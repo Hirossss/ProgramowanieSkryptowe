@@ -54,5 +54,18 @@ class Animal:
         return self.position == position
 
     def move(self, direction: MoveDirection) -> None:
-        
+        if direction == MoveDirection.RIGHT:
+            self.orientation = self.orientation.next()
+        elif direction == MoveDirection.LEFT:
+            self.orientation = self.orientation.previous()
+        elif direction == MoveDirection.FORWARD:
+            new_position = self.position.add(self.orientation.toUnitVector())
+            if Vector2d(0, 0).precedes(new_position) and new_position.precedes(Vector2d(4, 4)):
+                self.position = new_position
+        elif direction == MoveDirection.BACKWARD:
+            new_position = self.position.subtract(self.orientation.toUnitVector())
+            if Vector2d(0, 0).precedes(new_position) and new_position.precedes(Vector2d(4, 4)):
+                self.position = new_position
+            
+
 
