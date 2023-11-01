@@ -42,9 +42,9 @@ class Subject:
                     if not grades:
                         del student_subjects[self.__name]
                     student.remove_grade(self.__name, grade_number - 1)  # Adjust the index by one
-                    print(f"Usunięto ocenę {removed_grade} od studenta {student._name} w przedmiocie {self.__name}.")
+                    print(f"Usunięto ocenę {removed_grade} studentowi: {student._name} w przedmiocie: {self.__name}.")
                 else:
-                    print(f"Nie ma oceny o numerze {grade_number} dla studenta {student}.")
+                    print(f"Nie ma oceny o numerze {grade_number} dla studenta {student._name}.")
             else:
                 print(f"Student {student} nie jest zapisany na przedmiot {self.__name}.")
         else:
