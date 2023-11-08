@@ -23,10 +23,9 @@ class Subject:
             student_subjects[self.__name] = student_subjects.get(self.__name, []) + [
                 grade
             ]
-            # Update the student's subjects and grades
-            student.add_subject_and_grade(
+            student.add_subject_and_grade(  # korzystam z metody obiektu student
                 self.__name, grade
-            )  # student is an object and has its method to add grades
+            )  
         else:
             print(
                 f"Nie można dodać studenta {student}. Limit studentów został osiągnięty."
@@ -38,10 +37,10 @@ class Subject:
             if self.__name in student_subjects:
                 grades = student_subjects[self.__name]
                 if 1 <= grade_number <= len(grades):
-                    removed_grade = grades.pop(grade_number - 1)  # Adjust the index by one
+                    removed_grade = grades.pop(grade_number - 1) 
                     if not grades:
                         del student_subjects[self.__name]
-                    student.remove_grade(self.__name, grade_number - 1)  # Adjust the index by one
+                    student.remove_grade(self.__name, grade_number - 1) 
                     print(f"Usunięto ocenę {removed_grade} studentowi: {student._name} w przedmiocie: {self.__name}.")
                 else:
                     print(f"Nie ma oceny o numerze {grade_number} dla studenta {student._name}.")
