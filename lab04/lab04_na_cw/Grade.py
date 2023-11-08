@@ -9,6 +9,7 @@ class AGH_Scale(Enum):
     C = 4.0
     D = 3.5
     E = 3.0
+    F = 2.0
 
 
 class Grade:

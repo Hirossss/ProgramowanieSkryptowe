@@ -37,7 +37,7 @@ class Usos:
             try:
                 grade_enum = AGH_Scale[grade_value]
             except KeyError:
-                print("Invalid grade value. Valid values are A, B, C, D, E.")
+                print("Invalid grade value. Valid values are A, B, C, D, E, F")
                 return
 
             grade = Grade(student, subject, grade_enum)
@@ -66,7 +66,7 @@ class Usos:
                 try:
                     grade_enum = AGH_Scale[grade_value]
                 except KeyError:
-                    print("Invalid grade value. Valid values are A, B, C, D, E.")
+                    print("Invalid grade value. Valid values are A, B, C, D, E, F")
                     return
 
                 found_grade = None
