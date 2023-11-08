@@ -1,13 +1,3 @@
-'''
-from Vector2d import Vector2d
-from model import Animal, MapDirection
-
-
-kot = Animal(Vector2d(2,0),MapDirection.SOUTH)
-
-print(f'Dane zwierzecia kot: {kot}, a pozycja to {kot.position}')
-'''
-
 import sys
 from model import Vector2d, MoveDirection
 from controller import Simulation, OptionsParser
