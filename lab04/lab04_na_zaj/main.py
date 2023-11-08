@@ -1,6 +1,6 @@
 import sys
-from model import Vector2d, MoveDirection
-from controller import Simulation, OptionsParser
+from lab04.lab04_na_zaj.model import Vector2d, MoveDirection
+from lab04.lab04_na_zaj.controller import Simulation, OptionsParser
 
 directions: list[MoveDirection] = OptionsParser.parse(sys.argv[1:]) 
 positions: list[Vector2d] = [Vector2d(2,2), Vector2d(3,4)] # Pozycje początkowe dla zwierząt, odpowiednio, (2,2) oraz (3,4) 

@@ -6,7 +6,7 @@ Wersja: 1.0
 Opis: Testy integracyjne klasy "Animal".
 """      
 import pytest
-from model import MapDirection, Vector2d, MoveDirection, Animal
+from lab04.lab04_na_zaj.model import MapDirection, Vector2d, MoveDirection, Animal
 @pytest.fixture
 def animal():
     # Tutaj kod, który, w przypadku modułu 'unittest', umieścilibyśmy w metodzie 'setUp()'  

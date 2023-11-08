@@ -1,8 +1,8 @@
 # from typing import Self
 from enum import Enum
 
-from Vector2d import Vector2d
-from MoveDirection import MoveDirection
+from lab04.lab04_na_zaj.Vector2d import Vector2d
+from lab04.lab04_na_zaj.MoveDirection import MoveDirection
 
 
 class MapDirection(Enum):

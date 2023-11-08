@@ -1,4 +1,4 @@
-from model import MoveDirection, Vector2d, Animal
+from lab04.lab04_na_zaj.model import MoveDirection, Vector2d, Animal
 
 
 class OptionsParser:

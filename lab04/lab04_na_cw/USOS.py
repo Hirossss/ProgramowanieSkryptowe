@@ -1,5 +1,5 @@
 from Grade import Grade
-from lab04_na_cw.Subject import Subject
+from Subject import Subject
 
 
 class Usos:
@@ -7,3 +7,4 @@ class Usos:
 
     def __init__(self, grades: list[Grade]):
         self._grades = grades
+

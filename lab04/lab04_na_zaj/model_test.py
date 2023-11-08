@@ -5,7 +5,7 @@ Data modyfikacji: 22-10-2023
 Wersja: 1.0
 Opis: Testy jednostkowe enuma "MapDirection".
 """
-from model import MapDirection, Vector2d
+from lab04.lab04_na_zaj.model import MapDirection, Vector2d
 def test_MapDirection_print(capsys):
     print(MapDirection.NORTH)
     print(MapDirection.EAST)

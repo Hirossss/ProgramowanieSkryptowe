@@ -1,5 +1,5 @@
-from lab03.lab03_zajecia.Subject import Subject
-from lab04_na_cw.Student import Student
+from Student import Student
+from Subject import Subject
 from enum import Enum
 
 

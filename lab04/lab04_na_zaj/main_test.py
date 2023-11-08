@@ -6,8 +6,8 @@ Wersja: 1.0
 Opis: Testy jednostkowe klasy "Simulation".
 """
 import pytest
-from model import Vector2d, MoveDirection
-from controller import Simulation, OptionsParser
+from lab04.lab04_na_zaj.model import Vector2d, MoveDirection
+from lab04.lab04_na_zaj.controller import Simulation, OptionsParser
 @pytest.fixture
 def simulation_for_two_animals():
     args = "f b r l f f r r f f f f f f f f".split(" ")
