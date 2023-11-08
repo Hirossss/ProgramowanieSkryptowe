@@ -1,4 +1,3 @@
-from Subject import Subject
 from Student import Student
 
 Jan_Kowalski = Student("Jan", "Kowalski")
