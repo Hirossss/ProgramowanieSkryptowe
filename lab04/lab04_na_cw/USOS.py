@@ -17,30 +17,33 @@ class Usos:
                 student = st
                 break
 
-        if student is not None:
-            # Znaleziono studenta, dodajemy ocenę
-            subject_exists = False
+        if student is None:
+            # If the student doesn't exist, create a new one
+            student = Student("New", "Student")  # You can provide default names here
+            student._id = student_id  # Set the ID
+            self.list_of_students.append(student)
 
-            for subj in self.subjects:
-                if subj == subject:
-                    subject_exists = True
-                    subject = subj
-                    break
+        # Znaleziono studenta, dodajemy ocenę
+        subject_exists = False
 
-            if subject_exists:
-                grade_enum = None
-                try:
-                    grade_enum = AGH_Scale[grade_value]
-                except KeyError:
-                    print("Invalid grade value. Valid values are A, B, C, D, E.")
-                    return
+        for subj in self.subjects:
+            if subj == subject:
+                subject_exists = True
+                subject = subj
+                break
 
-                grade = Grade(student, subject, grade_enum)
-                self._grades.append(grade)
-            else:
-                print("Subject does not exist. Cannot add a grade.")
+        if subject_exists:
+            grade_enum = None
+            try:
+                grade_enum = AGH_Scale[grade_value]
+            except KeyError:
+                print("Invalid grade value. Valid values are A, B, C, D, E.")
+                return
+
+            grade = Grade(student, subject, grade_enum)
+            self._grades.append(grade)
         else:
-            print(f"Student with ID {student_id} does not exist.")
+            print("Subject does not exist. Cannot add a grade.")
 
     def remove(self, student_id: int, subject, grade_value):
         student = None
@@ -75,7 +78,7 @@ class Usos:
                 if found_grade:
                     self._grades.remove(found_grade)
                 else:
-                    print(f"Grade {grade_value} does not exist for subject {subject} for student with ID {student_id}.")
+                    print(f"Grade {grade_value} does not exist for subject {subject} for student with ID {student_id} ({student._fname} {student._lname})")
             else:
                 print("Subject does not exist. Cannot remove a grade.")
         else:
@@ -87,14 +90,14 @@ class Usos:
             if st._id == student_id:
                 student = st
                 break
-
+                
         if student is not None:
-            print(f"Grades for Student {student_id}:")
+            print(f"Grades for Student {student_id} ({student._fname} {student._lname}):")
             for subject in self.subjects:
                 print(f"Subject: {subject._name}")
                 subject_grades = [grade for grade in self._grades if grade._student == student and grade._subject == subject]
                 for grade in subject_grades:
-                    print(f"   Grade: {grade._grade.name}")
+                    print(f"   Grade: {grade._grade.value}")  # Use the 'value' attribute to get the numerical value
         else:
             print(f"Student with ID {student_id} not found.")
 
