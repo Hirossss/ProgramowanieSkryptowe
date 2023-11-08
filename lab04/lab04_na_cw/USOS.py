@@ -23,12 +23,14 @@ class Usos:
             student._id = student_id  # Set the ID
             self.list_of_students.append(student)
 
-        # Znaleziono studenta, dodajemy ocenę
+        # Check if the subject exists and if it has reached the maximum number of students
         subject_exists = False
-
         for subj in self.subjects:
             if subj == subject:
                 subject_exists = True
+                if len([grade for grade in self._grades if grade._subject == subject]) >= subj._max_students:
+                    print(f"Subject {subject._name} has reached the maximum number of students.")
+                    return
                 subject = subj
                 break
 
@@ -37,7 +39,7 @@ class Usos:
             try:
                 grade_enum = AGH_Scale[grade_value]
             except KeyError:
-                print("Invalid grade value. Valid values are A, B, C, D, E, F")
+                print("Invalid grade value. Valid values are A, B, C, D, E.")
                 return
 
             grade = Grade(student, subject, grade_enum)
