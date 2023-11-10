@@ -1,4 +1,5 @@
 from core import Vector2d, MapDirection, MoveDirection
+from interface import IMoveValidator
 
 class Animal:
     def __init__(
@@ -8,7 +9,7 @@ class Animal:
         self.orientation = orientation
 
     def __str__(self) -> str:
-        return f"{self.position} {self.orientation}"
+        return f"{self.orientation}"
 
     def __repr__(self) -> str:
         return str(self)
@@ -17,7 +18,7 @@ class Animal:
     def isAt(self, position: Vector2d) -> bool:
         return self.position == position
 
-    def move(self, direction: MoveDirection) -> None:
+    def move(self, direction: MoveDirection, validator: IMoveValidator) -> None:
         if direction == MoveDirection.RIGHT:
             self.orientation = self.orientation.next()
         elif direction == MoveDirection.LEFT:

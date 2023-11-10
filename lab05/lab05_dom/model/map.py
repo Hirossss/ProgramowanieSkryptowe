@@ -18,7 +18,7 @@ class RectangularMap(IMoveValidator, IWorldMap):
 
     def move(self, animal: Animal, direction: MoveDirection) -> None:
         new_position = self.calculate_new_position(animal.position, direction)
-        if self.is_in_bounds(new_position) and not self.isOccupied(new_position):
+        if self.canMoveTo(new_position) and not self.isOccupied(new_position):
             del self.animals[animal.position]
             animal.position = new_position
             self.animals[new_position] = animal
@@ -47,7 +47,7 @@ class RectangularMap(IMoveValidator, IWorldMap):
         elif direction == MoveDirection.LEFT:
             return position.subtract(Vector2d(1, 0))
 
-    def is_in_bounds(self, position: Vector2d) -> bool:
+    def canMoveTo(self, position: Vector2d) -> bool:
         lower_left = Vector2d(0, 0)
         upper_right = Vector2d(self.width - 1, self.height - 1)
         return lower_left.precedes(position) and position.follows(upper_right)

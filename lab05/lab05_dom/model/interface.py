@@ -67,7 +67,7 @@ class IWorldMap(ABC):
 
 '''
 ODP: Nie da sie.
-> py -i .\interface.py
+> py -i interface.py
 >>> obj1 = IMoveValidator()
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
