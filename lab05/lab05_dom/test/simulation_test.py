@@ -25,4 +25,4 @@ def test_Simulation_run_for_two_animals(simulation_for_two_animals: Simulation):
     assert str(simulation_for_two_animals.animals) == "[(3,0) ↓, (2,4) ↑]"
 def test_Simulation_run_for_three_animals(simulation_for_three_animals: Simulation):
     simulation_for_three_animals.run()
-    assert str(simulation_for_three_animals.animals) == "[(2,4) ↑, (4,4) →, (4,4) →]"
+    assert str(simulation_for_three_animals.animals) == "[(2,4) ↑, (4,4) →, (4,4) →]"   
