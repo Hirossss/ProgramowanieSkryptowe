@@ -7,7 +7,7 @@ Opis: Testy jednostkowe klasy "Simulation".
 """
 import pytest
 from model.core import Vector2d, MoveDirection
-from lab04.lab04_na_zaj.controller import Simulation, OptionsParser
+from controller import Simulation, OptionsParser
 @pytest.fixture
 def simulation_for_two_animals():
     args = "f b r l f f r r f f f f f f f f".split(" ")
