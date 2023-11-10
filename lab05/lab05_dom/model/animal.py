@@ -1,4 +1,4 @@
-from model.core import Vector2d, MapDirection, MoveDirection
+from core import Vector2d, MapDirection, MoveDirection
 
 class Animal:
     def __init__(
