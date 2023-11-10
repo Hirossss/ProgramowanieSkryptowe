@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 Autor: Stanisław Polak
 Data utworzenia: 02-11-2023

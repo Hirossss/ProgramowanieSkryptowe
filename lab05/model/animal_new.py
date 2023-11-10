@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from model.core import MoveDirection, Vector2d, MapDirection
 from model.interface import IMoveValidator
 

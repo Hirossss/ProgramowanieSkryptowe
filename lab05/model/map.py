@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from model.interface import IMoveValidator, IWorldMap
 from model.core import Vector2d, MoveDirection
 from model.animal_new import Animal

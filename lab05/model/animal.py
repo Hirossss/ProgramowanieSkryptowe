@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from model.core import Vector2d, MapDirection, MoveDirection
 
 class Animal:
