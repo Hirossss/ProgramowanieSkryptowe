@@ -1,18 +1,14 @@
-#!/usr/bin/env python
-
-from model.interface import IMoveValidator, IWorldMap
-from model.core import Vector2d, MoveDirection
+from interface import IMoveValidator, IWorldMap
 from model.animal_new import Animal
-from model.view import MapVisualizer
-
+from model.core import Vector2d, MoveDirection
+from view import MapVisualizer
 
 class WorldMap(IMoveValidator, IWorldMap):
     def __init__(self) -> None:
         self.animal: dict[Vector2d, Animal] = {}
 
     def canMoveTo(self, position: Vector2d) -> bool:
-        if self.isOccupied(position):
-            return False
+        if self.isOccupied(position): return False
         return True
 
     def place(self, animal: Animal) -> bool:
@@ -29,14 +25,14 @@ class WorldMap(IMoveValidator, IWorldMap):
             self.animal[animal.position] = animal
 
     def isOccupied(self, position: Vector2d) -> bool:
-        if position in self.animal.keys():
-            return True
+        if position in self.animal.keys(): return True
         return False
 
     def objectAt(self, position: Vector2d) -> Animal | None:
         if position in self.animal.keys():
             return self.animal[position]
 
+    
 
 class RectangularMap(WorldMap):
     def __init__(self, x: int, y: int) -> None:
@@ -45,19 +41,16 @@ class RectangularMap(WorldMap):
         self.y = y
 
     def canMoveTo(self, position: Vector2d) -> bool:
-        if position.follows(Vector2d(0, 0)) and position.precedes(
-            Vector2d(self.x, self.y)
-        ):
-            if self.isOccupied(position):
-                return False
+        if position.follows(Vector2d(0,0)) and position.precedes(Vector2d(self.x, self.y)): 
+            if self.isOccupied(position): return False
             return True
 
         return False
-
+    
     def __str__(self) -> str:
         obj = MapVisualizer(self)
-        return obj.draw(Vector2d(0, 0), Vector2d(self.x, self.y))
-
+        return obj.draw(Vector2d(0,0), Vector2d(self.x, self.y))
+    
 
 class InfiniteMap(WorldMap):
     def __str__(self) -> str:

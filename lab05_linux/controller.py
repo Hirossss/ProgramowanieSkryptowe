@@ -1,5 +1,3 @@
-
-
 from model.core import Vector2d, MoveDirection
 from model.animal import Animal
 

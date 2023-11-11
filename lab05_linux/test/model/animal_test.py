@@ -7,7 +7,7 @@ Opis: Testy integracyjne klasy "Animal".
 """      
 
 import pytest
-from model.core import MapDirection, Vector2d, MoveDirection
+from model.core import Vector2d, MoveDirection
 from model.animal import Animal
 
 

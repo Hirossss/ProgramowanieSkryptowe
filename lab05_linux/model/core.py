@@ -22,19 +22,23 @@ class Vector2d:
     def __hash__(self) -> int:
         return hash((self.x, self.y))
 
+    @property
+    def get_x(self):
+        return self.x
+
+    @property
+    def get_y(self):
+        return self.y
+
     def get_info(self):
         return f"Przypisany atrybut x: {self.x},przypisany atrybut y: {self.y}"
 
     def add(self, other_Vector2d):
-        new_vector = Vector2d(
-            self.x + other_Vector2d.x, self.y + other_Vector2d.y
-        )
+        new_vector = Vector2d(self.x + other_Vector2d.x, self.y + other_Vector2d.y)
         return new_vector
 
     def subtract(self, other_Vector2d):
-        new_vector = Vector2d(
-            self.x - other_Vector2d.x, self.y - other_Vector2d.y
-        )
+        new_vector = Vector2d(self.x - other_Vector2d.x, self.y - other_Vector2d.y)
         return new_vector
 
     def precedes(self, other_Vector2d):
@@ -108,6 +112,6 @@ class MoveDirection(Enum):
     RIGHT = 3
 
 
-'''
+"""
 $env:PYTHONPATH += ";$(Get-Location)"
-'''
+"""

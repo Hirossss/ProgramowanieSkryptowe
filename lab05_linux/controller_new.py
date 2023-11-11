@@ -1,5 +1,3 @@
-
-
 import time
 from model.core import Vector2d, MoveDirection
 from model.animal_new import Animal

@@ -4,7 +4,6 @@ Data utworzenia: 02-11-2023
 Data modyfikacji: 02-11-2023
 Wersja: 1.0
 Opis: Testy integracyjne klas typu "IWorldMap".
-export PYTHONPATH=/home/nikodem/lab05
 """
 import pytest
 from model.animal_new import Animal

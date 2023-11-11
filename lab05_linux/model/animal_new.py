@@ -1,7 +1,5 @@
-#!/usr/bin/env python
-
-from model.core import MoveDirection, Vector2d, MapDirection
-from model.interface import IMoveValidator
+from core import MoveDirection, Vector2d, MapDirection
+from interface import IMoveValidator
 
 class Animal:
     def __init__(self, position: Vector2d, orientation = MapDirection.NORTH) -> None:
@@ -15,7 +13,8 @@ class Animal:
         return str(self)
 
     def isAt(self, position: Vector2d) -> bool:
-        return self.position.x == position.x and self.position.y == position.y
+        if self.position.get_x == position.get_x and self.position.get_y == position.get_y: return True
+        else: return False
 
     def move(self, direction: MoveDirection, validator: IMoveValidator) -> None:
         if direction.name == MoveDirection.RIGHT.name:

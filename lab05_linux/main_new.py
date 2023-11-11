@@ -1,5 +1,3 @@
-
-
 import sys
 from model.core import Vector2d, MoveDirection
 from controller_new import Simulation, OptionsParser
