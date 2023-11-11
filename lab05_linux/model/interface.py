@@ -8,7 +8,7 @@ Wersja: 1.0
 Opis: Klasy abstrakcyjne do ćwicznia 5.
 """
 from abc import ABC, abstractmethod
-from core import Vector2d, MoveDirection
+from model.core import Vector2d, MoveDirection
 
 
 class IMoveValidator(ABC):
@@ -25,7 +25,7 @@ class IMoveValidator(ABC):
         pass
 class IWorldMap(ABC):
 
-    from animal_new import Animal
+    from model.animal_new import Animal
 
     @abstractmethod
     def place(self, animal: Animal) -> bool:

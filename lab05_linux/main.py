@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 
 import sys
 from model.core import MoveDirection, Vector2d # Import bezwzględny

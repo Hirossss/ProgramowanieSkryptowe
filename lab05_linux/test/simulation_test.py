@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 
 """
 Autor: Stanisław Polak
