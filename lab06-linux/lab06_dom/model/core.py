@@ -4,6 +4,29 @@
 from enum import Enum
 
 
+def log(function):
+    def wrapper(*args, **kwargs):
+        print(f"Nazwa kwalifikowana: {function.__qualname__}")
+        args_str = " ".join(map(str, args))
+        print(f"Argumenty: {args_str}")
+        return function(*args, **kwargs)
+
+    return wrapper
+
+
+def log_to(file):
+    def log(function):
+        def wrapper(*args, **kwargs):
+            args_str = " ".join(map(str, args))
+            with open(file, "a") as f:
+                f.writelines(f"{function.__qualname__}\t| {args_str}\n")
+            return function(*args, **kwargs)
+
+        return wrapper
+
+    return log
+
+
 class Vector2d:
     def __init__(self, x, y):
         self.x = x
@@ -23,20 +46,24 @@ class Vector2d:
         return hash((self.x, self.y))
 
     @property
+    @log_to(file="dziennik_log")
     def get_x(self):
         return self.x
 
     @property
+    @log_to(file="dziennik_log")
     def get_y(self):
         return self.y
 
     def get_info(self):
         return f"Przypisany atrybut x: {self.x},przypisany atrybut y: {self.y}"
 
+    @log_to(file="dziennik_log")
     def add(self, other_Vector2d):
         new_vector = Vector2d(self.x + other_Vector2d.x, self.y + other_Vector2d.y)
         return new_vector
 
+    @log
     def subtract(self, other_Vector2d):
         new_vector = Vector2d(self.x - other_Vector2d.x, self.y - other_Vector2d.y)
         return new_vector
@@ -97,7 +124,7 @@ class MapDirection(Enum):
         elif self == MapDirection.EAST:
             return Vector2d(1, 0)
         else:
-            return Vector2d(0,0)
+            return Vector2d(0, 0)
 
     def __eq__(self, other):
         if isinstance(other, MapDirection):
