@@ -17,6 +17,8 @@ class OptionsParser:
                 result.append(MoveDirection.LEFT)
             elif option == "r":
                 result.append(MoveDirection.RIGHT)
+            else:
+                raise ValueError(f'{option} is not legal move specification')
         return result
 
 
