@@ -1,1 +1,0 @@
-export PYTHONPATH=/home/user/Desktop/lab05/lab05_linux/model
