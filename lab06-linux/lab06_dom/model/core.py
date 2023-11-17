@@ -34,6 +34,9 @@ class Vector2d:
 
     def __str__(self):
         return f"({self.x},{self.y})"
+    
+    def __repr__(self):
+        return f"({self.x},{self.y})"
 
     def __eq__(self, other):
         if not isinstance(other, Vector2d):
@@ -51,7 +54,7 @@ class Vector2d:
         return self.x
 
     @property
-    @log_to(file="dziennik_log")
+    @log
     def get_y(self):
         return self.y
 
@@ -140,5 +143,8 @@ class MoveDirection(Enum):
 
 
 """
-$env:PYTHONPATH += ";$(Get-Location)"
+v1=Vector2d(2,2)
+v2=v1.subtract(Vector2d(1,1))
+v2
+v2.get_y
 """

@@ -7,21 +7,27 @@ from model.interface import IWorldMap
 class OptionsParser:
     @staticmethod
     def parse(list_str):
-        result = []
-        for option in list_str:
-            if option == "f":   
-                result.append(MoveDirection.FORWARD)
-            elif option == "b":
-                result.append(MoveDirection.BACKWARD)
-            elif option == "l":
-                result.append(MoveDirection.LEFT)
-            elif option == "r":
-                result.append(MoveDirection.RIGHT)
-        return result
+        # tutaj nowa metoda
+
+        return [
+            MoveDirection.FORWARD
+            if i == "f"
+            else MoveDirection.BACKWARD
+            if i == "b"
+            else MoveDirection.RIGHT
+            if i == "r"
+            else MoveDirection.LEFT
+            for i in filter(lambda x: x in "fblr", list_str)
+        ]
 
 
 class Simulation:
-    def __init__(self, directions: list[MoveDirection], positions: list[Vector2d], iwmap: IWorldMap) -> None:
+    def __init__(
+        self,
+        directions: list[MoveDirection],
+        positions: list[Vector2d],
+        iwmap: IWorldMap,
+    ) -> None:
         self.directions = directions
         self.positions = positions
         self.animals: list[Animal] = []
@@ -35,6 +41,6 @@ class Simulation:
         for i in range(len(self.directions)):
             print(self.iwmap)
             time.sleep(1)
-            
+
             n = i % len(self.animals)
-            self.iwmap.move(self.animals[n],self.directions[i])
+            self.iwmap.move(self.animals[n], self.directions[i])
