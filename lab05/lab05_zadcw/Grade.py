@@ -1,5 +1,5 @@
-from Others import Subject, AGH_Scale
-
+from Subject import Subject
+from Others import AGH_Scale
 
 class Grade:
     def __init__(self, subject: Subject, agh_scale: AGH_Scale):

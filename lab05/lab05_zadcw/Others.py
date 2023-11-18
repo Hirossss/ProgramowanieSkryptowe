@@ -9,18 +9,6 @@ class AGH_Scale(Enum):
     F = 2.0
 
 
-class Subject:
-    def __init__(self, name, max_students):
-        self.name = name
-        self.max_students = max_students
-
-    def __str__(self):
-        return f"{self.name}"
-
-    def __repr__(self):
-        return f"{self.name}"
-
-
 class Student:
     def __init__(self, firstname, lastname):
         self.fname = firstname
