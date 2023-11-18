@@ -7,6 +7,11 @@ class Subject:
 
     def __repr__(self):
         return f"{self.name}"
+    
+    '''
+    def __hash__(self):
+        return hash(self.name)
+    '''
 
 # Update Exercise and Lecture classes
 class Exercise(Subject):

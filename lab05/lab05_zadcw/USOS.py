@@ -7,7 +7,7 @@ class Usos:
 
     def __init__(self):
         self.students = {}
-
+        self.exercise_counts = {exercise.name: 0 for exercise in self.courses if isinstance(exercise, Exercise)}
     def add(self, student: Student, subject: Subject, grade_value: str):
         if student not in self.students:
             self.students[student] = []
@@ -15,15 +15,23 @@ class Usos:
         # Check if the subject exists and find it
         subject_found = next((s for s in self.courses if s.name == subject.name), None)
 
-        # Perform the check for the maximum number of students outside the loop
-        if isinstance(subject_found, Exercise):
-            if len([grade for grade in self.students[student] if grade.subject == subject_found]) >= subject_found.max_students:
-                print(f"Subject {subject_found.name} has reached the maximum number of students.")
+        if subject_found:
+            # Check if the subject is an exercise
+            if isinstance(subject_found, Exercise):
+                # Check if the exercise has reached the maximum number of students
+                if self.exercise_counts[subject_found.name] >= subject_found.max_students:
+                    print(f"Exercise {subject_found.name} has reached the maximum number of students.")
+                    return
+                else:
+                    self.exercise_counts[subject_found.name] += 1
+            else:
+                print("Subject does not exist or is not an Exercise. Cannot add a grade.")
                 return
         else:
-            print("Subject does not exist or is not an Exercise. Cannot add a grade.")
+            print("Subject does not exist. Cannot add a grade.")
             return
 
+        # Perform the check for the grade value
         grade_enum = None
         try:
             grade_enum = AGH_Scale[grade_value]
