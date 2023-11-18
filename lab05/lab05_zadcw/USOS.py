@@ -72,19 +72,19 @@ class Usos:
 
 '''
 GOTOWIEC:
-# Create an instance of Usos
+
 usos_instance = Usos()
 
-# Create instances of students
+
 john_doe = Student("John", "Doe")
 jane_smith = Student("Jane", "Smith")
 bob_jones = Student("Bob", "Jones")
 
-# Assuming Usos.subjects is available
-math_exercise = Usos.courses[0]  # Assuming the first element is an exercise
-physics_lecture = Usos.courses[2]  # Assuming the third element is a lecture
 
-# Adding grades for students
+math_exercise = Usos.courses[0]  
+physics_lecture = Usos.courses[2] 
+
+
 usos_instance.add(john_doe, math_exercise, "A")
 usos_instance.add(john_doe, math_exercise, "B")
 usos_instance.add(john_doe, physics_lecture, "B")
@@ -94,14 +94,22 @@ usos_instance.add(jane_smith, math_exercise, "C")
 usos_instance.add(bob_jones, math_exercise, "B")
 
 
-# Displaying grades for students
 usos_instance.display_grades(john_doe)
 usos_instance.display_grades(jane_smith)
 usos_instance.display_grades(bob_jones)
 
-# Removing a grade from a student
+
 usos_instance.remove(john_doe, math_exercise, "A")
 
-# Displaying grades for a student after removal
+
 usos_instance.display_grades(john_doe)
+
+
+print(math_exercise) 
+
+
+print(physics_lecture) 
+
+
+print(usos_instance.courses)    
 '''
