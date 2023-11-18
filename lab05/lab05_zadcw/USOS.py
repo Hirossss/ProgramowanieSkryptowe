@@ -7,7 +7,8 @@ class Usos:
 
     def __init__(self):
         self.students = {}
-        self.exercise_counts = {exercise.name: 0 for exercise in self.courses if isinstance(exercise, Exercise)}
+        self.exercise_enrollments = {exercise.name: set() for exercise in self.courses if isinstance(exercise, Exercise)}
+
     def add(self, student: Student, subject: Subject, grade_value: str):
         if student not in self.students:
             self.students[student] = []
@@ -19,11 +20,11 @@ class Usos:
             # Check if the subject is an exercise
             if isinstance(subject_found, Exercise):
                 # Check if the exercise has reached the maximum number of students
-                if self.exercise_counts[subject_found.name] >= subject_found.max_students:
+                if len(self.exercise_enrollments[subject_found.name]) >= subject_found.max_students:
                     print(f"Exercise {subject_found.name} has reached the maximum number of students.")
                     return
                 else:
-                    self.exercise_counts[subject_found.name] += 1
+                    self.exercise_enrollments[subject_found.name].add(student)
             else:
                 print("Subject does not exist or is not an Exercise. Cannot add a grade.")
                 return
@@ -52,6 +53,10 @@ class Usos:
 
                 if found_grade:
                     self.students[student].remove(found_grade)
+
+                    # Decrement the exercise count only if it's an Exercise
+                    if isinstance(found_grade.subject, Exercise):
+                        self.exercise_enrollments[found_grade.subject.name].remove(student)
                 else:
                     print(f"Grade {grade_value} does not exist for subject {subject.name} for student {student}")
             else:
@@ -69,24 +74,23 @@ class Usos:
                     print(f"   Grade: {grade.agh_scale.value}")  # Use the 'value' attribute to get the numerical value
         else:
             print(f"Student {student} not found.")
-
 '''
 GOTOWIEC:
 
 usos_instance = Usos()
 
-
 john_doe = Student("John", "Doe")
 jane_smith = Student("Jane", "Smith")
 bob_jones = Student("Bob", "Jones")
-
 
 math_exercise = Usos.courses[0]  
 physics_lecture = Usos.courses[2] 
 
 
 usos_instance.add(john_doe, math_exercise, "A")
+
 usos_instance.add(john_doe, math_exercise, "B")
+
 usos_instance.add(john_doe, physics_lecture, "B")
 
 usos_instance.add(jane_smith, math_exercise, "C")
@@ -94,21 +98,27 @@ usos_instance.add(jane_smith, math_exercise, "C")
 usos_instance.add(bob_jones, math_exercise, "B")
 
 
+
 usos_instance.display_grades(john_doe)
+
 usos_instance.display_grades(jane_smith)
+
 usos_instance.display_grades(bob_jones)
+
 
 
 usos_instance.remove(john_doe, math_exercise, "A")
 
-
 usos_instance.display_grades(john_doe)
+
 
 
 print(math_exercise) 
 
 
+
 print(physics_lecture) 
+
 
 
 print(usos_instance.courses)    
