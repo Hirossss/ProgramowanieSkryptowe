@@ -142,6 +142,7 @@ class Usos:
             f"{'Grade does not exist for student, subject, or value.' * (not grade_removed)}"
         )
 
+
 if __name__ == "__main__":
     # Configure logging to save logs to a file
     logging.basicConfig(filename="usos_logs.log", level=logging.INFO)
