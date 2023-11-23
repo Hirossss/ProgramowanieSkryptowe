@@ -157,3 +157,58 @@ if __name__ == "__main__":
     usos_instance.current_user = args.user
     usos_instance.current_user_group = args.group
     usos_instance.current_user_privilege = args.privilege
+
+
+'''
+TRZEBA SIE ZASTANOWIC.
+Czy ktos kto ma write moze tez automatycznie czytac ???
+
+gdy ktos jest z grupy "nazwa" to tworza sie logi.
+
+
+GOTOWIEC.
+
+john_doe = Student("John", "Doe")
+jane_smith = Student("Jane", "Smith")
+bob_jones = Student("Bob", "Jones")
+
+math_exercise = Usos.courses[0]  
+physics_lecture = Usos.courses[2] 
+
+
+usos_instance.add(john_doe, math_exercise, "A")
+
+usos_instance.add(john_doe, math_exercise, "B")
+
+usos_instance.add(john_doe, physics_lecture, "B")
+
+usos_instance.add(jane_smith, math_exercise, "C")
+
+usos_instance.add(bob_jones, math_exercise, "B")
+
+
+
+usos_instance.display_grades(john_doe)
+
+usos_instance.display_grades(jane_smith)
+
+usos_instance.display_grades(bob_jones)
+
+
+
+usos_instance.remove(john_doe, math_exercise, "A")
+
+usos_instance.display_grades(john_doe)
+
+
+
+print(math_exercise) 
+
+
+
+print(physics_lecture) 
+
+
+
+print(usos_instance.courses)    
+'''
