@@ -21,6 +21,10 @@ to {
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
   }
   
+.margin-10-25{
+	margin: 10px 25px;
+}
+
 @media screen and (min-width: 500px) {
 	aside  {
 		/* Specyfikacja wyglądu */
@@ -32,7 +36,6 @@ to {
 
 	footer {
 		/* Specyfikacja wyglądu */
-		margin: 10px 25px;
 		padding: 7px;
         font-size: 1vw;
 	}
@@ -40,14 +43,13 @@ to {
 	header {
 		/* Specyfikacja wyglądu */
 		font-size: 1.5vw;
-		margin: 20px  25px;
+		margin: 20px 25px;
 		padding-left: 7px;
 		height: min-content;
 	}
 
 	main { 
 		/* Specyfikacja wyglądu */
-		margin: 10px 25px;
 		padding-left: 7px;
 		width: 30%;
 		position: static;
@@ -57,7 +59,6 @@ to {
 	nav {
 		/* Specyfikacja wyglądu */
 		display: inline-block;
-		margin: 10px 25px;
 		margin-top: 0px;
 		width: fit-content;
 		padding: 5px;
@@ -95,7 +96,6 @@ to {
 
 	footer {
 		/* Specyfikacja wyglądu */
-		margin: 10px 25px;
 		padding: 7px;
 		font-size: 3vw;
 	}
@@ -109,13 +109,11 @@ to {
 
 	main { 
 		/* Specyfikacja wyglądu */
-		margin: 10px 25px;
 		font-size: 4vw;
 	}
 
 	nav {
 		/* Specyfikacja wyglądu */
-		margin: 10px 25px;
 		margin-top: 0px;
 		padding: 5px;
 	}
