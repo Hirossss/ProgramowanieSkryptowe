@@ -50,12 +50,25 @@ to {
 		height: min-content;
 	}
 
+	header h1{
+		margin-left: 0;
+	}
+
 	main { 
 		/* Specyfikacja wyglądu */
 		padding-left: 7px;
 		width: 30%;
 		position: static;
         font-size: 1.2vw;
+	}
+
+	main blockquote{
+		margin-left: 0;
+		margin-right: 5px;
+	}
+
+	main h1{
+		margin-left: 0;
 	}
 
 	nav {
@@ -117,6 +130,11 @@ to {
 	main { 
 		/* Specyfikacja wyglądu */
 		font-size: 4vw;
+	}
+
+	main blockquote{
+		margin-left: 5px;
+		margin-right: 5px;
 	}
 
 	nav {
