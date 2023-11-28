@@ -124,7 +124,10 @@ to {
 		/* Specyfikacja wyglądu */
 		font-size: 6vw;
 		padding-left: 7px;
-		
+	}
+
+	header h1{
+		text-align: center;
 	}
 
 	main { 
