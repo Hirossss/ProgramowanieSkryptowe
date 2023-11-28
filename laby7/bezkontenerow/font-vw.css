@@ -3,14 +3,14 @@
 	--text-color-final: green;
   }
 
-  @keyframes text_animation{
-	from {
-	  color: var(--text-color-initial);
-	}
-	to {
-	  color: var(--text-color-final);
-	}
-  }
+@keyframes text_animation{
+from {
+	color: var(--text-color-initial);
+}
+to {
+	color: var(--text-color-final);
+}
+}
 
 
 .azure {
