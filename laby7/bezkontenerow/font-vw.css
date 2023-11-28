@@ -1,0 +1,144 @@
+:root{
+	--text-color-initial: red;
+	--text-color-final: green;
+  }
+
+  @keyframes text_animation{
+	from {
+	  color: var(--text-color-initial);
+	}
+	to {
+	  color: var(--text-color-final);
+	}
+  }
+
+
+.azure {
+	background-color: #EFF;
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  }
+  
+@media screen and (min-width: 500px) {
+	aside  {
+		/* Specyfikacja wyglądu */
+		margin: 0px 2.5vw;
+		width: 45%;
+		padding: 0px 5px;
+		float: right;
+	}
+
+	footer {
+		/* Specyfikacja wyglądu */
+		margin: 10px 25px;
+		padding: 7px;
+        font-size: 1vw;
+	}
+
+	header {
+		/* Specyfikacja wyglądu */
+		font-size: 1.5vw;
+		margin: 20px  25px;
+		padding-left: 7px;
+		height: min-content;
+	}
+
+	main { 
+		/* Specyfikacja wyglądu */
+		margin: 10px 25px;
+		padding-left: 7px;
+		width: 30%;
+		position: static;
+        font-size: 1.2vw;
+	}
+
+	nav {
+		/* Specyfikacja wyglądu */
+		display: inline-block;
+		margin: 10px 25px;
+		margin-top: 0px;
+		width: fit-content;
+		padding: 5px;
+	}
+
+	li {
+		/* Specyfikacja wyglądu */
+		font-size: 1.5vw;
+	}
+
+	h1 {
+		animation-name: text_animation;
+		animation-timing-function: ease;
+		animation-delay: 1s;
+		animation-iteration-count: infinite;
+		animation-duration: 1.5s;
+		animation-direction: alternate;
+	}
+
+	h1, h2 {
+		margin: 5px;
+	}
+
+	aside h1,h2 {
+		font-size: 2vw;
+	}
+}
+
+@media screen and (max-width: 499px) {
+	aside  {
+		/* Specyfikacja wyglądu */
+		margin: 0px 25px;
+		padding: 0px 5px;
+	}
+
+	footer {
+		/* Specyfikacja wyglądu */
+		margin: 10px 25px;
+		padding: 7px;
+		font-size: 3vw;
+	}
+
+	header {
+		/* Specyfikacja wyglądu */
+		font-size: 6vw;
+		margin: 20px  25px;
+		padding-left: 7px;
+	}
+
+	main { 
+		/* Specyfikacja wyglądu */
+		margin: 10px 25px;
+		font-size: 4vw;
+	}
+
+	nav {
+		/* Specyfikacja wyglądu */
+		margin: 10px 25px;
+		margin-top: 0px;
+		padding: 5px;
+	}
+
+	li {
+		/* Specyfikacja wyglądu */
+		font-size: 4vw;
+	}
+
+	h1 {
+		animation-name: text_animation;
+		animation-timing-function: ease;
+		animation-delay: 1s;
+		animation-iteration-count: infinite;
+		animation-duration: 1.5s;
+		animation-direction: alternate;
+	}
+
+	h1, h2 {
+		margin: 5px;
+	}
+
+	aside h1,h2 {
+		font-size: 5vw;
+	}
+}
