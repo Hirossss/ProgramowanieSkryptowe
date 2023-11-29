@@ -1,67 +1,64 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
+  <!-- Zmień wartość "lang" z 'en' na 'pl' -->
+
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1">
-    <link rel="stylesheet"
-          href="https://www.w3schools.com/w3css/4/w3.css"><!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous"><!-- Icons -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>
-      Tytuł strony / Page Title
+      Tytuł strony / Page tile
     </title>
   </head>
   <body>
     <!-- Umieść tutaj treść elementu 'body' z zadania 1 -->
-    <!-- Put here the contents of the 'body' element from exercise 1 -->
-    <nav class="w3-pale-yellow">
-        <img src="image/czapa.jpg" alt="czapka">
-        
-        <h1>
-            Wyższa Szkoła informatyki
-        </h1>
+    <header>
+      <img src="image/czapka.png" alt="czapka">
+      
+      <h1>
+          Wyższa Szkoła Informatyki
+      </h1>
 
-        <div class="panel-group">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" href="#collapse1">Collapsible list group</a>
-                </h4>
-              </div>
-              <div id="collapse1" class="panel-collapse collapse">
-                <ul class="list-group">
-                  <li class="list-group-item">One</li>
-                  <li class="list-group-item">Two</li>
-                  <li class="list-group-item">Three</li>
-                </ul>
-                <div class="panel-footer">Footer</div>
-              </div>
-            </div>
-        </div>
+      <!-- Example single danger button -->
+      <div class="btn-group">
+        <button type="button" class="btn dropdown-toggle border-0" data-bs-toggle="dropdown" aria-expanded="false">
+          Studia
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Stacjonarne</a></li>
+          <li><a class="dropdown-item" href="#">Niestacjonarne</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Informatyka</a></li>
+          <li><a class="dropdown-item" href="#">Webmastering</a></li>
+        </ul>
+      </div>
 
-        
-    </nav>
+      <input class="poleszukaj form-inline border-0.5" type="text" placeholder="Szukaj" aria-label="Search">
+      <button type="button" class="btn btn-outline-secondary">Szukaj</button>
+      <div class="usos-string">
+        <i class="marginlfa fa-solid fa-u"></i><i class="fa-solid fa-s"></i><i class="fa-solid fa-o"></i><i class="marginrfa fa-solid fa-s"></i>
+      </div>
+    </header>
 
-    <!-- Siatka, karuzela -->
-    <div>
+    <nav></nav>
 
-    </div>
+    <main></main>
 
-    <main>
+    <footer></footer>
 
-    </main>
 
-    <footer>
-
-    </footer>
-
-    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+          crossorigin="anonymous"></script>
   </body>
 </html>

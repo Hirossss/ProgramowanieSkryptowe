@@ -1,0 +1,10 @@
+INFO:root:2023-11-29 11:32:51.743305: User maciej called method add of class Usos
+INFO:root:2023-11-29 11:32:51.753410: User maciej called method add of class Usos
+INFO:root:2023-11-29 11:32:51.765895: User maciej called method add of class Usos
+INFO:root:2023-11-29 11:32:51.783165: User maciej called method add of class Usos
+INFO:root:2023-11-29 11:32:51.785313: User maciej called method add of class Usos
+INFO:root:2023-11-29 11:32:51.797516: User maciej called method display_grades of class Usos
+INFO:root:2023-11-29 11:32:51.803724: User maciej called method display_grades of class Usos
+INFO:root:2023-11-29 11:32:51.823118: User maciej called method display_grades of class Usos
+INFO:root:2023-11-29 11:32:51.829657: User maciej called method remove of class Usos
+INFO:root:2023-11-29 11:32:51.836062: User maciej called method display_grades of class Usos
