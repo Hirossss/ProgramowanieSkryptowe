@@ -15,7 +15,8 @@ class AccessError(Exception):
 def read(func):
     @wraps(func)
     def wrapper(self, *args, **kwargs):
-        if self.current_user_privilege != "read":
+        allowed = ["read","write"]
+        if self.current_user_privilege not in allowed:
             raise AccessError("Access denied. User does not have read privilege.")
         return func(self, *args, **kwargs)
 
@@ -96,7 +97,7 @@ class Usos:
         if not subject_found or not (
             isinstance(subject_found, Exercise) and exercise_condition
         ):
-            print("Subject does not exist or is not an Exercise. Cannot add a grade.")
+            print("Wrong subject or limit reached. Cannot add a grade.")
             return
 
         try:
@@ -137,9 +138,10 @@ class Usos:
         )
 
         print(
+            f"{'Grade does not exist for student, subject, or value.' * (not found_grade)}"
             f"{'Student does not exist.' * (student not in self.students)}"
             f"{'Subject does not exist. Cannot remove a grade.' * (not subject_exists)}"
-            f"{'Grade does not exist for student, subject, or value.' * (not grade_removed)}"
+            f"{'Grade removed successfully.' * bool(grade_removed)}"
         )
 
 
@@ -160,7 +162,7 @@ if __name__ == "__main__":
 
 '''
 TRZEBA SIE ZASTANOWIC.
-Czy ktos kto ma write moze tez automatycznie czytac ???
+Czy ktos kto ma write moze tez automatycznie czytac?
 
 gdy ktos jest z grupy "nazwa" to tworza sie logi.
 
