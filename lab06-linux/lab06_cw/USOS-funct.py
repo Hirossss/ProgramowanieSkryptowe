@@ -144,7 +144,6 @@ class Usos:
 
 
 if __name__ == "__main__":
-    # Configure logging to save logs to a file
     logging.basicConfig(filename="usos_logs.log", level=logging.INFO)
 
     parser = argparse.ArgumentParser(description="USOS System")

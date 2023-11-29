@@ -178,12 +178,7 @@ if __name__ == "__main__":
     usos_instance.current_user_privilege = args.privilege
 
 
-"""
-# Test the decorated methods based on user privilege and group
-usos_instance.display_grades("JohnDoe")  # This should raise an AccessError if the privilege is 'write'
-usos_instance.add(Student("John", "Doe"), Exercise("Matematyka", 2), "A")  # This should raise an AccessError if the privilege is 'read'
-usos_instance.remove("JohnDoe", Exercise("Matematyka", 2), "A")  # This should raise an AccessError if the privilege is 'read'
-"""
+
 """
 usos_instance = Usos()
 
