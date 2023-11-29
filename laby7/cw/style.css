@@ -1,17 +1,12 @@
-body{
-    display: flex;
-}
-
 header{
     display: flex;
-    width: 100%;
     justify-content: start;
     align-items: center;
     background-color: rgb(253, 253, 210);
 }
 
 header h1{
-    font-size: 2vw;
+    font-size: 1.5vw;
     margin: 0;
 }
 
@@ -36,4 +31,77 @@ header img{
 
 .poleszukaj{
     margin-left: 20vw;
+}
+
+.przyciskszukaj{
+    margin-left: 12px;
+}
+
+nav{
+    background-color: rgb(139, 139, 139);
+    max-width: 1400px;
+    height: 200px;
+    margin-top: 10px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    text-align: center;
+}
+
+nav h1{
+    font-size: 1.5vw;
+    color: rgb(255, 255, 255);
+}
+nav img{
+    height: 100px;
+    width: 250px;
+}
+
+main{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 4.2vw;
+    margin-right: 4.2vw;
+    margin-top: 15px;
+}
+
+main img{
+    width: 380px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+main h1{
+    font-size: 1vw;
+    border-bottom: 0.1px solid;
+    padding: 10px;
+}
+
+main div{
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 0.1px;
+}
+
+.ofertyzatrudnienia{
+    background-color: rgb(236, 134, 134);
+}
+
+.ofertyzatrudnienia img{
+    height: 350px;
+}
+
+.kierunki{
+    background-color: rgb(138, 197, 138);
+}
+
+.kierunki img{
+    height: 250px;
+}
+
+.zajeciadydatkyczne{
+    background-color: rgb(120, 205, 231);
+}
+
+.zajeciadydatkyczne img{
+    height: 170px;
 }
