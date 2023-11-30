@@ -1,3 +1,7 @@
+body{
+    overflow-y: scroll;
+}
+
 header{
     display: flex;
     justify-content: start;
@@ -103,6 +107,7 @@ main button{
 .kierunki .table{
     width: 360px;
     margin-left: 10px;
+    margin-bottom: 50px;
 }
 
 .zapleczedydaktyczne{
@@ -112,3 +117,35 @@ main button{
 .zapleczedydaktyczne img{
     height: 170px;
 }
+
+.zapleczedydaktyczne h2{
+    font-size: 1vw;
+    margin-left: 10px;
+    width: 360px;
+}
+
+.clear{
+    clear: both;
+    height: 120px;
+}
+
+.stopka{
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 98%;
+    height: 100px;
+    font-size: 0.7vw;
+    padding: 5px;
+}
+
+.stopka h5{
+    font-size: 1vw;
+    margin-bottom: 2px !important;
+}
+
+.footer-ikony{
+    color: black;
+}
+
