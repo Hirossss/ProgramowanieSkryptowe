@@ -1,0 +1,25 @@
+<html>
+  <body onLoad="
+            console.log('Tekst 1');
+            window.alert('Tekst 2');
+            //document.write('Tekst 3');
+          ">
+    <div>Treść dokumentu HTML</div>
+    <div>Treść dokumentu HTML</div>
+    <div>Treść dokumentu HTML</div>
+    <script>
+        //window.prompt("Tekst1","Tekst2");  Tekst 1 to prompt, a Tekst 2 to default value dla pola input.
+        function wprompt(){
+            for (let i = 0; i<4; i++){
+                console.log(window.prompt("","Wprowadz cos"))
+            }
+        }
+
+        wprompt();
+    </script>
+  </body>
+</html>
+
+<!-- 
+    Po wyrenderowaniu strony, Tekst 3 nadpisuje wszystko co bylo i pozostaje tylko on.
+ -->

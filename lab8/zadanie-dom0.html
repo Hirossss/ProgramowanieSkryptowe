@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <script>
+        function funkcja_zwrotna() {
+            // Odczytaj wartość z pól formularza
+            const poleTekstoweValue = document.forms[0].elements[0].value;
+            const poleLiczboweValue = document.forms[0].elements[1].value;
+
+            // Wypisz informacje na konsoli
+            console.log(`${poleTekstoweValue}:${typeof poleTekstoweValue}`);
+            console.log(`${poleLiczboweValue}:${typeof poleLiczboweValue}`);
+        }
+    </script>
+  </head>  
+  <body>
+    <form oninput="wynik.value = pole_tekstowe.value + pole_liczbowe.value">
+        <input id="pole_tekstowe" type="text" placeholder="Wprowadź tekst">
+        +
+        <input id="pole_liczbowe" type="number" placeholder="Wprowadź liczbę">    
+        =
+        <output name="wynik" for="pole_tekstowe pole_liczbowe">Tu pojawi się wynik obliczeń</output>    
+        <br>    
+        <input type="button" value="Wypisz" onclick="funkcja_zwrotna();">
+    </form>
+  </body>
+</html>

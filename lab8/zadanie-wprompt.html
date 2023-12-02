@@ -1,0 +1,37 @@
+<html>
+  <body>
+    <div>Treść dokumentu HTML</div>
+    <div>Treść dokumentu HTML</div>
+    <div>Treść dokumentu HTML</div>
+    
+    <form oninput="wynik.value = pole_tekstowe.value + pole_liczbowe.value">
+        <input id="pole_tekstowe" type="text" placeholder="Wprowadź tekst">
+        +
+        <input id="pole_liczbowe" type="number" placeholder="Wprowadź liczbę">    
+        =
+        <output name="wynik" for="pole_tekstowe pole_liczbowe">Tu pojawi się wynik obliczeń</output>    
+        <br>    
+        <input type="button" value="Wypisz">
+      </form>
+
+    <script>
+        function wprompt(){
+            for (let i = 0; i<4; i++){
+                const userInput = window.prompt("","Wprowadz cos")
+                console.log(`${userInput}:${typeof userInput}`)
+            }
+        }
+
+        wprompt()
+    </script>
+  </body>
+</html>
+
+<!-- 
+Użytkownik wprowadził wartość będącą liczbą i nacisnął klawisz 'Enter' lub przycisk 'OK'.   270:string
+Użytkownik wprowadził wartość będącą napisem i nacisnął klawisz 'Enter' lub przycisk 'OK'.  napis:string
+Użytkownik nie wprowadził wartości, a następnie nacisnął powyższy klawisz / przycisk.       Wprowadz cos:string
+Użytkownik wprowadził wartość, a następnie nacisnął przycisk 'Anuluj'.                      null:object  
+
+input dziala tak ze wszystko jest traktowane jak string
+-->
