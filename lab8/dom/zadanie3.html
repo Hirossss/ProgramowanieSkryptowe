@@ -13,6 +13,18 @@
         var canvasWidth = canvas.width;
         var canvasHeight = canvas.height;
 
+        // Set the scale factor to make the drawing twice as big
+        var scale_factorx = 3;
+        var scale_factory = 3;
+
+        // Calculate the translation needed to keep the drawing centered
+        var translateX = (canvasWidth - canvasWidth * scale_factorx) / 2;
+        var translateY = (canvasHeight - canvasHeight * scale_factory) / 2 + 75;
+
+        // Apply the translation and scale transformations
+        ctx.translate(translateX, translateY);
+        ctx.scale(scale_factorx, scale_factory);
+
         // Prostokąt (podstawa)
         ctx.fillStyle = '#3498db';
         ctx.fillRect(canvasWidth * 0.4, canvasHeight * 0.5, canvasWidth * 0.2, canvasHeight * 0.1);
