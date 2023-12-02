@@ -6,15 +6,37 @@
     
     <script>
       "use strict"; // Nie wyłączaj trybu ścisłego
-      function drawHW(){
+      function draw(){
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
-        ctx.fillText("Hello World", 10, 50); //Wykreślenie podanego tekstu na płótnie
+
+        var canvasWidth = canvas.width;
+        var canvasHeight = canvas.height;
+
+        // Prostokąt (podstawa)
+        ctx.fillStyle = '#3498db';
+        ctx.fillRect(canvasWidth * 0.4, canvasHeight * 0.5, canvasWidth * 0.2, canvasHeight * 0.1);
+
+        // Kolo (osadzone na prostokącie)
+        ctx.beginPath();
+        ctx.arc(canvasWidth * 0.5, canvasHeight * 0.4, canvasWidth * 0.1, 0, Math.PI);
+        ctx.fillStyle = '#e74c3c';
+        ctx.fill();
+        ctx.stroke();
+
+        // Trójkąt (na szczycie koła)
+        ctx.beginPath();
+        ctx.moveTo(canvasWidth * 0.5, canvasHeight * 0.3);
+        ctx.lineTo(canvasWidth * 0.65, canvasHeight * 0.40);
+        ctx.lineTo(canvasWidth * 0.35, canvasHeight * 0.40);
+        ctx.closePath();
+        ctx.fillStyle = '#2ecc71';
+        ctx.fill();
+        ctx.stroke();
       }    
-      
     </script>
   </head>
-  <body onload="drawHW();">
+  <body onload="draw();">
     <main>
       <h1>Płótno</h1>
       <canvas id="canvas" width="500" height="500" style="border:1px solid #000000;">
