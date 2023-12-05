@@ -18,13 +18,58 @@
     <title>
       WSI
     </title>
+    <script>
+        "use strict"; // Nie wyłączaj trybu ścisłego
+        function draw(){
+          var canvas = document.getElementById('canvas');
+          var ctx = canvas.getContext('2d');
+  
+          var canvasWidth = canvas.width;
+          var canvasHeight = canvas.height;
+  
+          
+          var scale_factorx = 2.3;
+          var scale_factory = 2.3;
+  
+  
+          var translateX = (canvasWidth - canvasWidth * scale_factorx) / 2;
+          var translateY = (canvasHeight - canvasHeight * scale_factory) / 2 + 5;
+  
+          
+          ctx.translate(translateX, translateY);
+          ctx.scale(scale_factorx, scale_factory);
+  
+          // Prostokąt 
+          ctx.fillStyle = '#3498db';
+          ctx.fillRect(canvasWidth * 0.4, canvasHeight * 0.5, canvasWidth * 0.2, canvasHeight * 0.1);
+  
+          // Kolo 
+          ctx.beginPath();
+          ctx.arc(canvasWidth * 0.5, canvasHeight * 0.4, canvasWidth * 0.1, 0, Math.PI);
+          ctx.fillStyle = '#e74c3c';
+          ctx.fill();
+          ctx.stroke();
+  
+          // Trójkąt 
+          ctx.beginPath();
+          ctx.moveTo(canvasWidth * 0.5, canvasHeight * 0.3);
+          ctx.lineTo(canvasWidth * 0.65, canvasHeight * 0.40);
+          ctx.lineTo(canvasWidth * 0.35, canvasHeight * 0.40);
+          ctx.closePath();
+          ctx.fillStyle = '#2ecc71';
+          ctx.fill();
+          ctx.stroke();
+        }    
+      </script>
   </head>
-  <body>
+  <body onload="draw();">
     <!-- Umieść tutaj treść elementu 'body' z zadania 1 -->
     <header class="header-s navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
           <a class="header-logotytul navbar-brand" href="#">
-            <img src="image/czapka.png" alt="czapka">
+            <canvas id="canvas" width="40" height="50">
+                Wygląda na to, że twoja przeglądarka nie obsługuje elementu "canvas" 
+            </canvas>
             <h1>Wyższa Szkoła Informatyki</h1>
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
