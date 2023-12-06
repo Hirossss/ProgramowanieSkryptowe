@@ -13,6 +13,9 @@ function executeCommand(commandInput) {
         case 'addgrade':
             handleAddGradeCommand(commandParams.slice(1)); // Przekazujemy resztę parametrów do funkcji obsługi
             break;
+        case 'removegrade':
+            handleRemoveGradeCommand(commandParams.slice(1)); // Przekazujemy resztę parametrów do funkcji obsługi
+            break;
         case 'display':
             handleDisplayCommand(commandParams.slice(1)); // Przekazujemy resztę parametrów do funkcji obsługi
             break;
@@ -22,7 +25,7 @@ function executeCommand(commandInput) {
 }
 
 function handleAddGradeCommand(params) {
-    if (params.length >= 3) {
+    if (params.length >= 4) {
         const subject = params[0];
         const student = params[1] + " " + params[2]; // Połącz imię i nazwisko
         const gradesValues = params.slice(3).map(value => parseFloat(value.trim()));
@@ -33,11 +36,28 @@ function handleAddGradeCommand(params) {
     }
 }
 
+// Funkcja do obsługi komendy usuwania oceny
+function handleRemoveGradeCommand(params) {
+    if (params.length === 4) {
+        const subject = params[0];
+        const student = params[1] + " " + params[2];
+        const indexToRemove = parseInt(params[3]);
+
+        removeGradeForStudent(student, indexToRemove, subject);
+    } else {
+        console.error('Invalid command format for removing grade!');
+    }
+}
+
 // Funkcja do obsługi komendy wyświetlania ocen
 function handleDisplayCommand(params) {
     if (params.length >= 2) {
         const student = params[0] + " " + params[1]; // Połącz imię i nazwisko
         display(student);
+    } 
+    else if (params.length === 1) {
+        const subject = params[0];
+        displaySubjectGrades(subject);
     } else {
         console.error('Invalid command format for display!');
     }
@@ -67,6 +87,33 @@ function addGradesForStudent(student, gradesValues, subject) {
     console.log(`Grades added successfully for ${student} in ${subject}: ${gradesValues.join(', ')}`);
 }
 
+
+// Funkcja do usuwania oceny dla studenta i przedmiotu
+function removeGradeForStudent(student, indexToRemove, subject) {
+    if (!subjects.includes(subject)) {
+        console.error(`Invalid subject: ${subject}`);
+        return;
+    }
+
+    const studentsMap = gradesMap.get(subject);
+
+    if (!studentsMap || !studentsMap.has(student)) {
+        console.error(`No grades found for ${student} in ${subject}`);
+        return;
+    }
+
+    const studentGrades = studentsMap.get(student);
+
+    if (indexToRemove >= 0 && indexToRemove < studentGrades.length) {
+        const removedGrade = studentGrades.splice(indexToRemove, 1)[0];
+        console.log(`Grade removed successfully for ${student} in ${subject}: ${removedGrade}`);
+    } else {
+        console.error(`Invalid index to remove grade for ${student} in ${subject}`);
+    }
+}
+
+
+
 // Funkcja do wyświetlania ocen dla danego studenta
 function display(student) {
     console.group(`Grades for ${student}`);
@@ -81,6 +128,28 @@ function display(student) {
             console.log(`Subject: ${subject}, Grades: ${studentGrades.join(', ')}, Average: ${average}`);
         } else {
             console.warn(`No grades found for ${student} in ${subject}`);
+        }
+    });
+
+    console.groupEnd();
+}
+
+// Funkcja do wyświetlania ocen dla danego przedmiotu
+function displaySubjectGrades(subject) {
+    console.group(`Grades for ${subject}`);
+
+    subjects.forEach(existingSubject => {
+        if (existingSubject === subject) {
+            const studentsMap = gradesMap.get(subject);
+
+            if (studentsMap) {
+                studentsMap.forEach((grades, student) => {
+                    const average = calculateAverage(grades).toFixed(2);
+                    console.log(`Student: ${student}, Grades: ${grades.join(', ')}, Average: ${average}`);
+                });
+            } else {
+                console.warn(`No grades found for ${subject}`);
+            }
         }
     });
 
