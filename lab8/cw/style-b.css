@@ -1,0 +1,436 @@
+body{
+    font-size: calc(15px + 0.390625vw);
+}
+
+body h1{
+    font-size: 1.4rem;
+}
+
+body h2 {
+    font-size: 1rem;
+}
+
+body h5{
+    font-size: 0.9rem;
+}
+
+
+body h6{
+    font-size: 0.8rem;
+}
+
+.header-s{
+    background-color: rgb(253, 253, 210);
+}
+
+header img{
+    width: 40px;
+    height: 50px;
+    mix-blend-mode: multiply;
+}   
+
+.header-logotytul{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.header-logotytul h1{
+    margin: 0;
+}
+
+.przyciski-studia{
+    display: block;
+}
+
+.polestudia{
+    flex: 0 0 auto !important;
+}
+
+.panel-group{
+    width: 120px;
+}
+
+.usos-string{
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.btn-group{
+    margin-left: 10px;
+}
+
+nav{
+    background-color: rgb(139, 139, 139);
+    height: 200px;
+    margin-top: 10px;
+    margin-left: 8vw;
+    margin-right: 8vw;
+    text-align: center;
+}
+
+nav h1{
+    
+    color: rgb(255, 255, 255);
+}
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+main img{
+    width: 380px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+main h1{
+    
+    border-bottom: 0.1px solid;
+    padding: 10px;
+}
+
+main div{
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 0.1px;
+    height: fit-content;
+    width: fit-content;
+}
+
+main button{
+    margin: 10px;
+}
+
+main img{
+    height: 250px;
+}
+
+.ofertyzatrudnienia{
+    background-color: rgb(236, 134, 134);
+}
+
+
+
+.kierunki{
+    background-color: rgb(138, 197, 138);
+}
+
+
+
+.kierunki .table{
+    width: 360px;
+    margin-left: 10px;
+    margin-bottom: 50px;
+}
+
+.zapleczedydaktyczne{
+    background-color: rgb(120, 205, 231);
+}
+
+
+.zapleczedydaktyczne h2{
+ 
+    width: 360px;
+}
+
+.clear{
+    clear: both;
+    height: 120px;
+}
+
+.stopka{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+  
+    padding: 5px;
+}
+
+.stopka h5{
+    
+    margin-bottom: 2px !important;
+}
+
+.footer-ikony{
+    color: black;
+}
+
+.stopka-kontakt{
+    width: 33%;
+}
+
+.stopka-adres{
+    width: 46%;
+}
+
+.stopka-ikony{
+    width: 20%;
+}
+@media screen and (min-width: 960px) and (max-width: 1169px) {
+    .panel-group{
+        width: 120px;
+    }
+
+    .usos-string{
+        margin-left: auto;
+        margin-right: 20px;
+    }
+
+    .btn-group{
+        margin-left: 10px;
+    }
+
+    .poleszukaj{
+        margin-left: 20vw;
+    }
+
+    .przyciskszukaj{
+        margin-left: 12px;
+    }
+
+    nav{
+        background-color: rgb(139, 139, 139);
+        height: 200px;
+        margin-top: 10px;
+        margin-left: 8vw;
+        margin-right: 8vw;
+        text-align: center;
+    }
+
+    nav h1{
+      
+        color: rgb(255, 255, 255);
+    }
+
+
+    main{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 15px;
+        width: 82%;
+        align-items: flex-start;
+    }
+
+    main img{
+        width: 380px;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    main h1{
+       
+        border-bottom: 0.1px solid;
+        padding: 10px;
+    }
+
+    main div{
+        border-radius: 5px;
+        border-style: solid;
+        border-width: 0.1px;
+        height: fit-content;
+    }
+
+    main button{
+        margin: 10px;
+    }
+
+    .ofertyzatrudnienia{
+        background-color: rgb(236, 134, 134);
+    }
+
+    .ofertyzatrudnienia img{
+        height: 350px;
+    }
+
+    .kierunki{
+        background-color: rgb(138, 197, 138);
+    }
+
+    .kierunki img{
+        height: 250px;
+    }
+
+    .kierunki .table{
+        width: 360px;
+        margin-left: 10px;
+        margin-bottom: 50px;
+    }
+
+    .zapleczedydaktyczne{
+        background-color: rgb(120, 205, 231);
+        height: 500px;
+    }
+
+    .zapleczedydaktyczne img{
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0;
+    }
+
+    .zapleczedydaktyczne h2{
+        width: 96%;
+    }
+
+    .clear{
+        clear: both;
+        height: 120px;
+    }
+
+    .stopka{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+       
+        padding: 5px;
+    }
+
+    .stopka h5{
+       
+        margin-bottom: 2px !important;
+    }
+
+    .footer-ikony{
+        color: black;
+    }
+}
+
+
+@media screen and (min-width: 1170px) {
+    .panel-group{
+        width: 120px;
+    }
+
+    .usos-string{
+        margin-left: auto;
+        margin-right: 20px;
+    }
+
+    .btn-group{
+        margin-left: 10px;
+    }
+
+    .poleszukaj{
+        margin-left: 20vw;
+    }
+
+    .przyciskszukaj{
+        margin-left: 12px;
+    }
+
+    nav{
+        background-color: rgb(139, 139, 139);
+        height: 200px;
+        margin-top: 10px;
+        margin-left: 8vw;
+        margin-right: 8vw;
+        text-align: center;
+    }
+
+    nav h1{
+       
+        color: rgb(255, 255, 255);
+    }
+
+
+    main{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+        margin-top: 15px;
+    }
+
+    main img{
+        width: 380px;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    main h1{
+      
+        border-bottom: 0.1px solid;
+        padding: 10px;
+    }
+
+    main div{
+        border-radius: 5px;
+        border-style: solid;
+        border-width: 0.1px;
+        height: fit-content;
+    }
+
+    main button{
+        margin: 10px;
+    }
+
+    .ofertyzatrudnienia{
+        background-color: rgb(236, 134, 134);
+    }
+
+    .ofertyzatrudnienia img{
+        height: 350px;
+    }
+
+    .kierunki{
+        background-color: rgb(138, 197, 138);
+    }
+
+    .kierunki img{
+        height: 250px;
+    }
+
+    .kierunki .table{
+        width: 360px;
+        margin-left: 10px;
+        margin-bottom: 50px;
+    }
+
+    .zapleczedydaktyczne{
+        background-color: rgb(120, 205, 231);
+    }
+
+    .zapleczedydaktyczne img{
+        height: 170px;
+    }
+
+    .zapleczedydaktyczne h2{
+       
+        margin-left: 10px;
+        width: 360px;
+    }
+
+    .clear{
+        clear: both;
+        height: 120px;
+    }
+
+    .stopka{
+        position: fixed;
+        bottom: 0;
+        height: 100px;
+        
+        padding: 5px;
+    }
+
+
+    .stopka h5{
+       
+        margin-bottom: 2px !important;
+    }
+
+
+    .footer-ikony{
+        color: black;
+    }
+}
