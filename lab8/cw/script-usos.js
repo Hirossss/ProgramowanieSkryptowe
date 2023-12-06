@@ -1,66 +1,47 @@
-// Zdefiniuj kolekcję z danymi zahardkodowanymi
-const students = [
-    { id: 1, name: 'John', surname: 'Doe' },
-    // Dodaj więcej studentów według potrzeb
-];
+// Kolekcje z danymi zahardkodowanymi
+const subjects = ['Matematyka', 'Fizyka', 'Informatyka'];
 
-const subjects = [
-    { id: 1, name: 'Math', instructor: 'Prof. Smith' },
-    // Dodaj więcej przedmiotów według potrzeb
-];
+// Mapa ocen: przedmiot -> student -> oceny
+const gradesMap = new Map();
 
-const grades = [
-    { studentId: 1, subjectId: 1, value: 4.5 },
-    // Dodaj więcej ocen według potrzeb
-];
-
-// Funkcja do obsługi komendy
-function executeCommand() {
-    const commandInput = document.getElementById('cmdinput').value;
-
-    // Przykładowa obsługa komendy dodawania oceny
-    if (commandInput.startsWith('addGrade')) {
-        const params = commandInput.split(' ');
-        if (params.length === 4) {
-            const studentId = parseInt(params[1]);
-            const subjectId = parseInt(params[2]);
-            const value = parseFloat(params[3]);
-
-            const studentExists = students.some(student => student.id === studentId);
-            const subjectExists = subjects.some(subject => subject.id === subjectId);
-
-            if (studentExists && subjectExists) {
-                grades.push({ studentId, subjectId, value });
-                console.log('Grade added successfully:', { studentId, subjectId, value });
-                display(); // Dodaj wywołanie funkcji display po dodaniu oceny
-            } else {
-                console.error('Student or subject not found!');
-            }
-        } else {
-            console.error('Invalid command format for adding grade!');
-        }
-    } else if (commandInput === 'display') {
-        display(); // Dodaj obsługę komendy 'display'
-    } else {
-        console.error('Unknown command!');
+// Funkcja do dodawania ocen dla studenta i przedmiotu
+function addGradesForStudent(student, gradesValues, subject) {
+    if (!subjects.includes(subject)) {
+        console.error(`Invalid subject: ${subject}`);
+        return;
     }
+
+    if (!gradesMap.has(subject)) {
+        gradesMap.set(subject, new Map());
+    }
+
+    const studentsMap = gradesMap.get(subject);
+
+    if (!studentsMap.has(student)) {
+        studentsMap.set(student, []);
+    }
+
+    const studentGrades = studentsMap.get(student);
+    studentGrades.push(...gradesValues);
+
+    console.log(`Grades added successfully for ${student} in ${subject}: ${gradesValues.join(', ')}`);
 }
 
-// Funkcja do wyświetlania danych
-function display() {
-    console.group('Grades');
+// Funkcja do wyświetlania ocen dla danego studenta
+function display(student) {
+    console.group(`Grades for ${student}`);
     
-    students.forEach(student => {
-        subjects.forEach(subject => {
-            const studentGrades = grades.filter(grade => grade.studentId === student.id && grade.subjectId === subject.id);
+    subjects.forEach(subject => {
+        const studentsMap = gradesMap.get(subject);
 
-            if (studentGrades.length > 0) {
-                const average = calculateAverage(studentGrades);
-                console.log(`Student: ${student.name} ${student.surname}, Subject: ${subject.name}, Instructor: ${subject.instructor}, Average: ${average}`);
-            } else {
-                console.warn(`No grades found for Student: ${student.name} ${student.surname}, Subject: ${subject.name}`);
-            }
-        });
+        if (studentsMap && studentsMap.has(student)) {
+            const studentGrades = studentsMap.get(student);
+            const average = calculateAverage(studentGrades).toFixed(2);
+
+            console.log(`Subject: ${subject}, Grades: ${studentGrades.join(', ')}, Average: ${average}`);
+        } else {
+            console.warn(`No grades found for ${student} in ${subject}`);
+        }
     });
 
     console.groupEnd();
@@ -68,6 +49,18 @@ function display() {
 
 // Funkcja do obliczania średniej ocen
 function calculateAverage(grades) {
-    const totalValue = grades.reduce((sum, grade) => sum + grade.value, 0);
+    if (grades.length === 0) {
+        return 0;
+    }
+
+    const totalValue = grades.reduce((sum, grade) => sum + grade, 0);
     return totalValue / grades.length;
 }
+
+
+// Przykładowe użycie funkcji
+const newStudent = 'John Doe';
+addGradesForStudent(newStudent, [4.5, 3.7, 5.0], 'Matematyka');
+
+// Wyświetl oceny dla studenta
+display(newStudent);
