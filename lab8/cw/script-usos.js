@@ -96,3 +96,9 @@ function calculateAverage(grades) {
     const totalValue = grades.reduce((sum, grade) => sum + grade, 0);
     return totalValue / grades.length;
 }
+
+
+// addgrade Matematyka John Doe 4.5 3.7 5.0
+// display John Doe
+// addgrade Fizyka Maciej Kot 4.5 3.0
+// display Maciej Kot
