@@ -2,7 +2,7 @@ let db;
 
 function openDatabase() {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open('USOSdatabase', 1);
+    const request = indexedDB.open('USOSdata', 1);
 
     request.onerror = function (event) {
       console.error('Błąd otwarcia bazy danych:', event.target.errorCode);
@@ -212,6 +212,22 @@ function displaySubject(subjectName) {
     });
 }
 
+function clearDatabase() {
+    openDatabase().then(() => {
+      const transaction = db.transaction(['students', 'grades'], 'readwrite');
+      const studentsStore = transaction.objectStore('students');
+      const gradesStore = transaction.objectStore('grades');
+  
+      studentsStore.clear();
+      gradesStore.clear();
+  
+      console.log('Usunięto wszystkie dane związane ze studentami i ocenami. Dane przedmiotów pozostawione.');
+    }).catch((error) => {
+      console.error(error);
+    });
+}
+
+clearDatabase()
 addGrade('John Doe', 4.5, 'Math');
 addGrade('John Doe', 3.5, 'Physics');
 displayStudent('John Doe');
