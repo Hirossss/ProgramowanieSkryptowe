@@ -19,6 +19,9 @@ function executeCommand(commandInput) {
         case 'display':
             handleDisplayCommand(commandParams.slice(1)); // Przekazujemy resztę parametrów do funkcji obsługi
             break;
+        case 'modifygrade':
+            handleModifyGradeCommand(commandParams.slice(1));
+            break;
         default:
             console.error('Unknown command!');
     }
@@ -46,6 +49,19 @@ function handleRemoveGradeCommand(params) {
         removeGradeForStudent(student, indexToRemove, subject);
     } else {
         console.error('Invalid command format for removing grade!');
+    }
+}
+
+function handleModifyGradeCommand(params) {
+    if (params.length === 5) {
+        const subject = params[0];
+        const student = params[1] + " " + params[2]; 
+        const index = parseInt(params[3]);
+        const newGrade = parseFloat(params[4]);
+
+        modifyGradeForStudent(student, index, newGrade, subject);
+    } else {
+        console.error('Invalid command format for modifygrade!');
     }
 }
 
@@ -112,6 +128,27 @@ function removeGradeForStudent(student, indexToRemove, subject) {
     }
 }
 
+function modifyGradeForStudent(student, index, newGrade, subject) {
+    if (!subjects.includes(subject)) {
+        console.error(`Invalid subject: ${subject}`);
+        return;
+    }
+
+    const studentsMap = gradesMap.get(subject);
+
+    if (studentsMap && studentsMap.has(student)) {
+        const studentGrades = studentsMap.get(student);
+
+        if (index >= 0 && index < studentGrades.length) {
+            studentGrades[index] = newGrade;
+            console.log(`Grade modified successfully for ${student} in ${subject} at index ${index} -> ${newGrade}`);
+        } else {
+            console.error(`Invalid index for modifying grade: ${index}`);
+        }
+    } else {
+        console.error(`No grades found for ${student} in ${subject}`);
+    }
+}
 
 
 // Funkcja do wyświetlania ocen dla danego studenta
