@@ -230,4 +230,6 @@ function clearDatabase() {
 clearDatabase()
 addGrade('John Doe', 4.5, 'Math');
 addGrade('John Doe', 3.5, 'Physics');
+addGrade('Maria Kot', 4.5, 'Math');
 displayStudent('John Doe');
+displayStudent('Maria Kot');
