@@ -4,6 +4,46 @@ const subjects = ['Matematyka', 'Fizyka', 'Informatyka'];
 // Mapa ocen: przedmiot -> student -> oceny
 const gradesMap = new Map();
 
+// Funkcja do obsługi komendy
+function executeCommand(commandInput) {
+    const commandParams = commandInput.split(' ');
+    const action = commandParams[0].toLowerCase(); // Pobieramy pierwszy parametr jako akcję
+
+    switch (action) {
+        case 'addgrade':
+            handleAddGradeCommand(commandParams.slice(1)); // Przekazujemy resztę parametrów do funkcji obsługi
+            break;
+        case 'display':
+            handleDisplayCommand(commandParams.slice(1)); // Przekazujemy resztę parametrów do funkcji obsługi
+            break;
+        default:
+            console.error('Unknown command!');
+    }
+}
+
+function handleAddGradeCommand(params) {
+    if (params.length >= 3) {
+        const subject = params[0];
+        const student = params[1] + " " + params[2]; // Połącz imię i nazwisko
+        const gradesValues = params.slice(3).map(value => parseFloat(value.trim()));
+
+        addGradesForStudent(student, gradesValues, subject);
+    } else {
+        console.error('Invalid command format for adding grade!');
+    }
+}
+
+// Funkcja do obsługi komendy wyświetlania ocen
+function handleDisplayCommand(params) {
+    if (params.length >= 2) {
+        const student = params[0] + " " + params[1]; // Połącz imię i nazwisko
+        display(student);
+    } else {
+        console.error('Invalid command format for display!');
+    }
+}
+
+
 // Funkcja do dodawania ocen dla studenta i przedmiotu
 function addGradesForStudent(student, gradesValues, subject) {
     if (!subjects.includes(subject)) {
@@ -56,11 +96,3 @@ function calculateAverage(grades) {
     const totalValue = grades.reduce((sum, grade) => sum + grade, 0);
     return totalValue / grades.length;
 }
-
-
-// Przykładowe użycie funkcji
-const newStudent = 'John Doe';
-addGradesForStudent(newStudent, [4.5, 3.7, 5.0], 'Matematyka');
-
-// Wyświetl oceny dla studenta
-display(newStudent);
