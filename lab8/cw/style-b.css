@@ -60,6 +60,12 @@ header img{
     margin-left: 10px;
 }
 
+.formszliniakomend{
+    margin-left: 8vw;
+    margin-right: 8vw;
+}
+
+
 nav{
     background-color: rgb(139, 139, 139);
     height: 200px;
