@@ -32,6 +32,20 @@ function executeCommand(commandInput) {
 
 
 
+// Funkcja do sprawdzania czy uczeń istnieje
+function checkIfStudentExists(student) {
+    // Zakładam, że `gradesMap` to mapa przedmiot -> student -> oceny
+    const studentsExist = Array.from(gradesMap.values())
+        .some(studentsMap => studentsMap.has(student));
+
+    if (!studentsExist) {
+        console.error(`Student not found: ${student}`);
+        return false;
+    }
+
+    return true;
+}
+
 
 function checkIfSubjectExists(subject){
     if (!subjects.includes(subject)) {
@@ -63,7 +77,7 @@ function handleRemoveGradeCommand(params) {
         const student = params[1] + " " + params[2];
         const indexToRemove = parseInt(params[3]);
 
-        if (checkIfSubjectExists(subject)){
+        if (checkIfSubjectExists(subject) && checkIfStudentExists(student)){
             removeGradeForStudent(student, indexToRemove, subject);
         }
         
@@ -79,7 +93,7 @@ function handleModifyGradeCommand(params) {
         const index = parseInt(params[3]);
         const newGrade = parseFloat(params[4]);
 
-        if (checkIfSubjectExists(subject)){
+        if (checkIfSubjectExists(subject) && checkIfStudentExists(student)){
             modifyGradeForStudent(student, index, newGrade, subject);
         }
 
@@ -93,7 +107,11 @@ function handleModifyGradeCommand(params) {
 function handleDisplayCommand(params) {
     if (params.length >= 2) {
         const student = params[0] + " " + params[1]; // Połącz imię i nazwisko
-        display(student);
+
+        if (checkIfStudentExists(student)){
+            display(student);
+        }
+
     } 
     else if (params.length === 1) {
         const subject = params[0];
