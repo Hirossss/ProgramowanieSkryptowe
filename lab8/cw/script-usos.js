@@ -1,9 +1,11 @@
 // Kolekcje z danymi zahardkodowanymi
 const subjects = ['Matematyka', 'Fizyka', 'Informatyka'];
-const instructor = []
+
 
 // Mapa ocen: przedmiot -> student -> oceny
 const gradesMap = new Map();
+
+
 
 // Funkcja do obsługi komendy
 function executeCommand(commandInput) {
@@ -28,13 +30,27 @@ function executeCommand(commandInput) {
     }
 }
 
+
+
+
+function checkIfSubjectExists(subject){
+    if (!subjects.includes(subject)) {
+        console.error(`Invalid subject: ${subject}`);
+        return false;
+    }
+    return true;
+}
+
 function handleAddGradeCommand(params) {
     if (params.length >= 4) {
         const subject = params[0];
         const student = params[1] + " " + params[2]; // Połącz imię i nazwisko
         const gradesValues = params.slice(3).map(value => parseFloat(value.trim()));
 
-        addGradesForStudent(student, gradesValues, subject);
+        if (checkIfSubjectExists(subject)){
+            addGradesForStudent(student, gradesValues, subject);
+        }
+        
     } else {
         console.error('Invalid command format for adding grade!');
     }
@@ -47,7 +63,10 @@ function handleRemoveGradeCommand(params) {
         const student = params[1] + " " + params[2];
         const indexToRemove = parseInt(params[3]);
 
-        removeGradeForStudent(student, indexToRemove, subject);
+        if (checkIfSubjectExists(subject)){
+            removeGradeForStudent(student, indexToRemove, subject);
+        }
+        
     } else {
         console.error('Invalid command format for removing grade!');
     }
@@ -60,7 +79,11 @@ function handleModifyGradeCommand(params) {
         const index = parseInt(params[3]);
         const newGrade = parseFloat(params[4]);
 
-        modifyGradeForStudent(student, index, newGrade, subject);
+        if (checkIfSubjectExists(subject)){
+            modifyGradeForStudent(student, index, newGrade, subject);
+        }
+
+        
     } else {
         console.error('Invalid command format for modifygrade!');
     }
@@ -74,19 +97,23 @@ function handleDisplayCommand(params) {
     } 
     else if (params.length === 1) {
         const subject = params[0];
-        displaySubjectGrades(subject);
+
+        if (checkIfSubjectExists(subject)){
+            displaySubjectGrades(subject);
+        }
+
+        
     } else {
         console.error('Invalid command format for display!');
     }
 }
 
 
+
+
 // Funkcja do dodawania ocen dla studenta i przedmiotu
 function addGradesForStudent(student, gradesValues, subject) {
-    if (!subjects.includes(subject)) {
-        console.error(`Invalid subject: ${subject}`);
-        return;
-    }
+    
 
     if (!gradesMap.has(subject)) {
         gradesMap.set(subject, new Map());
@@ -107,10 +134,7 @@ function addGradesForStudent(student, gradesValues, subject) {
 
 // Funkcja do usuwania oceny dla studenta i przedmiotu
 function removeGradeForStudent(student, indexToRemove, subject) {
-    if (!subjects.includes(subject)) {
-        console.error(`Invalid subject: ${subject}`);
-        return;
-    }
+    
 
     const studentsMap = gradesMap.get(subject);
 
@@ -130,10 +154,7 @@ function removeGradeForStudent(student, indexToRemove, subject) {
 }
 
 function modifyGradeForStudent(student, index, newGrade, subject) {
-    if (!subjects.includes(subject)) {
-        console.error(`Invalid subject: ${subject}`);
-        return;
-    }
+    
 
     const studentsMap = gradesMap.get(subject);
 
@@ -221,7 +242,7 @@ function calculateAverage(grades) {
 }
 
 
-// addgrade Matematyka John Doe 4.5 3.7 5.0
-// display John Doe
+// addgrade Matematyka Maciej Kot 4.5 3.7 5.0
+// display Maciej Kot
 // addgrade Fizyka Maciej Kot 4.5 3.0
 // display Maciej Kot
