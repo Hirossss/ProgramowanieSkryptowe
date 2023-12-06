@@ -1,5 +1,6 @@
 // Kolekcje z danymi zahardkodowanymi
 const subjects = ['Matematyka', 'Fizyka', 'Informatyka'];
+const instructor = []
 
 // Mapa ocen: przedmiot -> student -> oceny
 const gradesMap = new Map();
@@ -175,22 +176,38 @@ function display(student) {
 function displaySubjectGrades(subject) {
     console.group(`Grades for ${subject}`);
 
-    subjects.forEach(existingSubject => {
-        if (existingSubject === subject) {
-            const studentsMap = gradesMap.get(subject);
+    const studentsMap = gradesMap.get(subject);
 
-            if (studentsMap) {
-                studentsMap.forEach((grades, student) => {
-                    const average = calculateAverage(grades).toFixed(2);
-                    console.log(`Student: ${student}, Grades: ${grades.join(', ')}, Average: ${average}`);
-                });
-            } else {
-                console.warn(`No grades found for ${subject}`);
-            }
+    if (studentsMap) {
+        // Pobierz informacje o prowadzącym
+        const instructor = getSubjectInfo(subject);
+
+        if (instructor) {
+            console.log(`Instructor: ${instructor}`);
+        } else {
+            console.warn(`No instructor found for ${subject}`);
         }
-    });
+
+        studentsMap.forEach((grades, student) => {
+            const average = calculateAverage(grades).toFixed(2);
+            console.log(`Student: ${student}, Grades: ${grades.join(', ')}, Average: ${average}`);
+        });
+    } else {
+        console.warn(`No grades found for ${subject}`);
+    }
 
     console.groupEnd();
+}
+
+// Funkcja do pobierania informacji o prowadzącym
+function getSubjectInfo(subject) {
+    const instructors = new Map([
+        ['Matematyka', 'Prof. Kowalski'],
+        ['Fizyka', 'Prof. Nowak'],
+        ['Informatyka', 'Prof. Wiśniewski']
+    ]);
+
+    return instructors.get(subject);
 }
 
 // Funkcja do obliczania średniej ocen
