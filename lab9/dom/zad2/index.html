@@ -199,7 +199,7 @@
 		'Potem jęki po jękach skomlą: to psów granie;',
 		'A gdzieniegdzie ton twardszy jak grzmot: to strzelanie.']
 
-	  function dodaj() {
+	  function add_line_f() {
 		if (nrlinii == tekst.length) {
 		  add.disabled = true;
 		}
@@ -212,10 +212,11 @@
 		  nrlinii+=1;
 		}
 	  }
+      
 	  document.addEventListener("DOMContentLoaded", function(event) {
 		set.addEventListener('click', azure_w_others);
 		del.addEventListener('click', delete_f);
-		add.addEventListener('click', dodaj)
+		add.addEventListener('click', add_line_f)
 	  });
 	</script>
   </body>
