@@ -27,8 +27,8 @@ self.onmessage = function(event) {
     } catch (error) {   
         // blad w obliczeniach
         console.error('Error in worker:', error.message);
-        window.alert('Error in worker: ' + error.message);
         //self.postMessage({ error: error.message });
+        window.alert('Error in worker: ' + error.message);
     } finally {
         // zakonczenie watku, blok finally sie zawsze wykona niezaleznie od erroru lub jego jego braku
         self.close();
