@@ -24,11 +24,11 @@ const students = [
       },
     },
     // Dodaj inne dane studentów...
-];
+  ];
   
-function openStudentTabs() {
+  function openStudentTabs() {
     students.forEach(student => {
-      const studentTab = window.open('',`_blank`);
+      const studentTab = window.open('', `_blank`);
       const studentDocument = studentTab.document;
   
       studentDocument.title = student.name;
@@ -51,7 +51,7 @@ function openStudentTabs() {
       image.width = window.innerWidth * 0.3; // Ustaw stałą szerokość zdjęcia
       image.height = window.innerHeight * 0.4; // Ustaw stałą wysokość zdjęcia
       gradesHeading.textContent = 'Grades';
-  
+
       // Dodaj oceny do listy
       Object.keys(student.grades).forEach(subject => {
         const listItem = studentDocument.createElement('li');
@@ -65,26 +65,40 @@ function openStudentTabs() {
   
       // Dodaj elementy do głównego kontenera
       container.appendChild(heading);
-      
+  
       // Dodaj główny kontener do ciała dokumentu
       studentDocument.body.appendChild(container);
   
       // Dodaj obsługę dwukrotnego kliknięcia na nagłówek
       heading.style.cursor = 'pointer';
+      let isHidden = true;
+  
       heading.addEventListener('dblclick', () => {
-        // Dodaj elementy po podwójnym kliknięciu
-        container.appendChild(image);
-        container.appendChild(gradesHeading);
-        container.appendChild(gradesList);
-        container.appendChild(averageList);
-
-        // Ustaw zawartość elementów po podwójnym kliknięciu
-        image.src = student.image;
-        image.alt = 'Student Image';
-        image.width = window.innerWidth * 0.3; // Ustaw stałą szerokość zdjęcia
-        image.height = window.innerHeight * 0.4; // Ustaw stałą wysokość zdjęcia
-
-        gradesHeading.textContent = 'Grades';
+        if (isHidden) {
+          // Dodaj elementy po podwójnym kliknięciu
+          container.appendChild(image);
+          container.appendChild(gradesHeading);
+          container.appendChild(gradesList);
+          container.appendChild(averageList);
+  
+          // Ustaw zawartość elementów po podwójnym kliknięciu
+          image.src = student.image;
+          image.alt = 'Student Image';
+          image.width = window.innerWidth * 0.3; // Ustaw stałą szerokość zdjęcia
+          image.height = window.innerHeight * 0.4; // Ustaw stałą wysokość zdjęcia
+  
+          gradesHeading.textContent = 'Grades';
+        } else {
+          // Wyczyść zawartość po kolejnym podwójnym kliknięciu
+          while (container.firstChild) {
+            container.removeChild(container.firstChild);
+          }
+  
+          // Dodaj ponownie nagłówek
+          container.appendChild(heading);
+        }
+  
+        isHidden = !isHidden;
       });
     });
   }
@@ -101,9 +115,4 @@ function openStudentTabs() {
   
   // Wywołaj funkcję otwierającą nowe karty przy załadowaniu strony
   openStudentTabs();
-
-
-/*
-TO DO:
-- obsluga bledow typu window.alert()
-*/
+  
