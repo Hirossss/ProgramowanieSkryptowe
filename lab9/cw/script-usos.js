@@ -51,18 +51,11 @@ const students = [
       Object.keys(student.grades).forEach(subject => {
         const listItem = studentDocument.createElement('li');
         const strong = studentDocument.createElement('strong');
-        const textNode = studentDocument.createTextNode(`${subject}: ${student.grades[subject].join(', ')}`);
+        const textNode = studentDocument.createTextNode(`${subject}: ${student.grades[subject].join(', ')} -> Average: ${calculateAverage(student.grades[subject]).toFixed(2)}`);
   
         strong.appendChild(textNode);
         listItem.appendChild(strong);
         gradesList.appendChild(listItem);
-  
-        // Oblicz średnią i dodaj do listy
-        const averageItem = studentDocument.createElement('li');
-        const averageValue = calculateAverage(student.grades[subject]).toFixed(2);
-        const averageTextNode = studentDocument.createTextNode(`Average ${subject}: ${averageValue}`);
-        averageItem.appendChild(averageTextNode);
-        averageList.appendChild(averageItem);
       });
   
       // Dodaj elementy do ciała dokumentu
