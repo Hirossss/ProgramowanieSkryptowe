@@ -88,3 +88,9 @@ function openStudentTabs() {
   
   // Wywołaj funkcję otwierającą nowe karty przy załadowaniu strony
   openStudentTabs();
+
+
+/*
+TO DO:
+- obsluga bledow typu window.alert()
+*/
