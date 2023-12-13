@@ -42,7 +42,6 @@ const students = [
       const image = studentDocument.createElement('img');
       const gradesHeading = studentDocument.createElement('h2');
       const gradesList = studentDocument.createElement('ul');
-      const averageList = studentDocument.createElement('ul');
   
       // Ustaw zawartość elementów
       heading.textContent = student.name;
