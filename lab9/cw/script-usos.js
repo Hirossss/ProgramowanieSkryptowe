@@ -267,3 +267,16 @@ function calculateAverage(grades) {
 // display Matematyka
 // addgrade Fizyka Maciej Kot 4.5 3.0
 // display Maciej Kot
+
+/*
+POMYSL: 
+przepisac studentow i przedmioty na obiekty, do studenta dodac ceche zdjecie. Lista studentow jest zahardkodowana w js. 
+
+ZADANIE:
+- w momencie otwarcia strony automatycznie otwieraja sie nowe karty w zaleznosci od ilosci studentow (opis studenta). Jak zero to zadna.
+- na tych nowych kartach dodac addEventlistenery, zeby po kliknieciu (wejsciu w interakcje) w np ocene, przedmiot itp. byla mozliwosc edycji.
+
+Glowne wyzwanie - zrobic to w js i przy uzyciu DOM4, koniecznie musi byc addEventlistener a nie "onclick"!
+
+Skorzytac z wtyczki LIVEPREVIEW w Extensions.
+*/
