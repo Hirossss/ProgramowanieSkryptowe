@@ -46,6 +46,8 @@ const students = [
   
       // Ustaw zawartość elementów
       heading.textContent = student.name;
+      heading.style.width = 'fit-content'
+      heading
       image.src = student.image;
       image.alt = 'Student Image';
       image.width = window.innerWidth * 0.3; // Ustaw stałą szerokość zdjęcia
@@ -73,7 +75,7 @@ const students = [
       heading.style.cursor = 'pointer';
       let isHidden = true;
   
-      heading.addEventListener('dblclick', () => {
+      heading.addEventListener('click', () => {
         if (isHidden) {
           // Dodaj elementy po podwójnym kliknięciu
           container.appendChild(image);
@@ -115,4 +117,3 @@ const students = [
   
   // Wywołaj funkcję otwierającą nowe karty przy załadowaniu strony
   openStudentTabs();
-  
