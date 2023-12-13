@@ -132,11 +132,40 @@ const students = [
         if (!newGrades.some(isNaN)) {
           // Update the grades in the student object
           student.grades[subject] = newGrades;
+  
+          // Update the content of gradesList
+          updateStudentTabContent(studentTab.document, subject, newGrades);
         } else {
           alert('Invalid input. Please enter valid numbers.');
         }
       }
     });
+  }
+  
+  function updateStudentTabContent(studentDocument, subject, grades) {
+    // Find the container and gradesList
+    const container = studentDocument.querySelector('div');
+    const gradesList = container.querySelector('ul');
+  
+    // Check if the listItem for the subject already exists
+    const existingListItem = Array.from(gradesList.children).find(child => child.textContent.includes(subject));
+  
+    if (existingListItem) {
+      // Replace existing listItem with updated content
+      const listItemText = `${subject}: ${grades.join(', ')} -> Average: ${calculateAverage(grades).toFixed(2)}`;
+      const strong = existingListItem.querySelector('strong');
+      strong.textContent = listItemText;
+    } else {
+      // Add the new listItem to gradesList
+      const listItemText = `${subject}: ${grades.join(', ')} -> Average: ${calculateAverage(grades).toFixed(2)}`;
+      const listItem = studentDocument.createElement('li');
+      const strong = studentDocument.createElement('strong');
+      const textNode = studentDocument.createTextNode(listItemText);
+  
+      strong.appendChild(textNode);
+      listItem.appendChild(strong);
+      gradesList.appendChild(listItem);
+    }
   }
 
 // Wywołaj funkcję otwierającą nowe karty przy załadowaniu strony
