@@ -262,5 +262,7 @@ function calculateAverage(grades) {
 
 // addgrade Matematyka Maciej Kot 4.5 3.7 5.0
 // display Maciej Kot
+// removegrade Matematyka Maciej Kot 0
+// display Matematyka
 // addgrade Fizyka Maciej Kot 4.5 3.0
 // display Maciej Kot
