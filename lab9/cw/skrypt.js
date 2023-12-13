@@ -58,10 +58,12 @@ const students = [
         const listItem = studentDocument.createElement('li');
         const strong = studentDocument.createElement('strong');
         const textNode = studentDocument.createTextNode(`${subject}: ${student.grades[subject].join(', ')} -> Average: ${calculateAverage(student.grades[subject]).toFixed(2)}`);
-  
+
         strong.appendChild(textNode);
         listItem.appendChild(strong);
         gradesList.appendChild(listItem);
+
+
       });
   
       // Dodaj elementy do głównego kontenera
@@ -80,7 +82,6 @@ const students = [
           container.appendChild(image);
           container.appendChild(gradesHeading);
           container.appendChild(gradesList);
-          container.appendChild(averageList);
   
           // Ustaw zawartość elementów po podwójnym kliknięciu
           image.src = student.image;
@@ -101,6 +102,14 @@ const students = [
   
         isHidden = !isHidden;
       });
+
+
+      gradesList.style.cursor = 'pointer';
+      
+  
+      gradesList.addEventListener('dblclick', () => {
+        studentTab.prompt("naszczam ci");
+      });
     });
   }
   
@@ -114,5 +123,23 @@ const students = [
     return totalValue / grades.length;
   }
   
-  // Wywołaj funkcję otwierającą nowe karty przy załadowaniu strony
-  openStudentTabs();
+// Funkcja do edycji ocen
+function editGrades(student, subject) {
+  const gradesString = prompt(`Edit grades for ${subject} (comma-separated):`, student.grades[subject].join(', '));
+  if (gradesString !== null) {
+    const newGrades = gradesString.split(',').map(grade => parseFloat(grade.trim()));
+    if (!newGrades.some(isNaN)) {
+      // Zaktualizuj oceny i odśwież stronę
+      student.grades[subject] = newGrades;
+      location.reload();
+    } else {
+      alert('Invalid input. Please enter valid numbers.');
+    }
+  }
+}
+
+
+// Wywołaj funkcję otwierającą nowe karty przy załadowaniu strony
+openStudentTabs();
+
+
