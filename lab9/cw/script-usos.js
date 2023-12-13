@@ -24,13 +24,17 @@ const students = [
       },
     },
     // Dodaj inne dane studentów...
-  ];
+];
   
-  function openStudentTabs() {
+function openStudentTabs() {
     students.forEach(student => {
-      const studentTab = window.open('', `_blank`);
+      const studentTab = window.open('',`_blank`);
       const studentDocument = studentTab.document;
-      studentDocument.title = student.name;
+  
+      // Utwórz główny kontener dla informacji o studencie
+      const container = studentDocument.createElement('div');
+
+      container.style.margin = '30px';
   
       // Utwórz elementy DOM
       const heading = studentDocument.createElement('h1');
@@ -43,8 +47,8 @@ const students = [
       heading.textContent = student.name;
       image.src = student.image;
       image.alt = 'Student Image';
-      image.width = 250; // Ustaw stałą szerokość zdjęcia
-      image.height = 250; // Ustaw stałą wysokość zdjęcia
+      image.width = window.innerWidth * 0.3; // Ustaw stałą szerokość zdjęcia
+      image.height = window.innerHeight * 0.4; // Ustaw stałą wysokość zdjęcia
       gradesHeading.textContent = 'Grades';
   
       // Dodaj oceny do listy
@@ -58,15 +62,18 @@ const students = [
         gradesList.appendChild(listItem);
       });
   
-      // Dodaj elementy do ciała dokumentu
-      studentDocument.body.appendChild(heading);
-      studentDocument.body.appendChild(image);
-      studentDocument.body.appendChild(gradesHeading);
-      studentDocument.body.appendChild(gradesList);
-      studentDocument.body.appendChild(averageList);
+      // Dodaj elementy do głównego kontenera
+      container.appendChild(heading);
+      container.appendChild(image);
+      container.appendChild(gradesHeading);
+      container.appendChild(gradesList);
+      container.appendChild(averageList);
+  
+      // Dodaj główny kontener do ciała dokumentu
+      studentDocument.body.appendChild(container);
     });
   }
-  
+
   // Funkcja do obliczania średniej ocen
   function calculateAverage(grades) {
     if (grades.length === 0) {
