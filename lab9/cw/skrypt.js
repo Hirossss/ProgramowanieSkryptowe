@@ -108,7 +108,7 @@ const students = [
       
   
       gradesList.addEventListener('dblclick', () => {
-        studentTab.prompt("naszczam ci");
+        editGrades(studentTab, student);
       });
     });
   }
@@ -123,23 +123,21 @@ const students = [
     return totalValue / grades.length;
   }
   
-// Funkcja do edycji ocen
-function editGrades(student, subject) {
-  const gradesString = prompt(`Edit grades for ${subject} (comma-separated):`, student.grades[subject].join(', '));
-  if (gradesString !== null) {
-    const newGrades = gradesString.split(',').map(grade => parseFloat(grade.trim()));
-    if (!newGrades.some(isNaN)) {
-      // Zaktualizuj oceny i odśwież stronę
-      student.grades[subject] = newGrades;
-      location.reload();
-    } else {
-      alert('Invalid input. Please enter valid numbers.');
-    }
+  function editGrades(studentTab, student) {
+    // Create a prompt for each subject in the student object
+    Object.keys(student.grades).forEach(subject => {
+      const gradesString = studentTab.prompt(`Edit grades for ${subject} (comma-separated):`, student.grades[subject].join(', '));
+      if (gradesString !== null) {
+        const newGrades = gradesString.split(',').map(grade => parseFloat(grade.trim()));
+        if (!newGrades.some(isNaN)) {
+          // Update the grades in the student object
+          student.grades[subject] = newGrades;
+        } else {
+          alert('Invalid input. Please enter valid numbers.');
+        }
+      }
+    });
   }
-}
-
 
 // Wywołaj funkcję otwierającą nowe karty przy załadowaniu strony
 openStudentTabs();
-
-
