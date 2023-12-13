@@ -30,6 +30,8 @@ function openStudentTabs() {
     students.forEach(student => {
       const studentTab = window.open('',`_blank`);
       const studentDocument = studentTab.document;
+
+      studentDocument.title = student.name;
   
       // Utwórz główny kontener dla informacji o studencie
       const container = studentDocument.createElement('div');
