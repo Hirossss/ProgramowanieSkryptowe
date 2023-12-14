@@ -16,6 +16,14 @@ const students = [
       },
     },
     {
+      image: 'image/studenci1.png',
+      name: 'Mariusz Kowal',
+      grades: {
+        'Matematyka': [],
+        'Fizyka': [],
+      },
+    },
+    {
       image: 'image/studenci2.png',
       name: 'Jan Kowalski',
       grades: {
@@ -25,6 +33,12 @@ const students = [
     },
     // Dodaj inne dane studentów...
   ];
+
+
+  // Function to check if a student has any grades
+  function hasGrades(student) {
+    return Object.keys(student.grades).some(subject => student.grades[subject].length > 0);
+  }
   
   function openStudentTabs() {
     students.forEach(student => {
@@ -36,6 +50,14 @@ const students = [
       // Utwórz główny kontener dla informacji o studencie
       const container = studentDocument.createElement('div');
       container.style.margin = '30px';
+
+      // Sprawdź czy istnieją oceny dla danego ucznia
+      const studentHasGrades = hasGrades(student);
+
+      // Ustaw tło strony na szare, jeśli nie ma ocen
+      if (!studentHasGrades) {
+        studentDocument.body.style.backgroundColor = 'gray';
+      }
   
       // Utwórz elementy DOM
       const heading = studentDocument.createElement('h1');
@@ -127,26 +149,34 @@ const students = [
     // Create a prompt for each subject in the student object
     Object.keys(student.grades).forEach(subject => {
       const gradesString = studentTab.prompt(`Edit grades for ${subject} (comma-separated):`, student.grades[subject].join(', '));
-      if (gradesString !== null) {
+  
+      // Check if gradesString is null or empty
+      if (gradesString !== null && gradesString.trim() !== '') {
         const newGrades = gradesString.split(',').map(grade => parseFloat(grade.trim()));
         if (!newGrades.some(isNaN)) {
           // Update the grades in the student object
           student.grades[subject] = newGrades;
   
           // Update the content of gradesList
-          updateStudentTabContent(studentTab.document, subject, newGrades);
+          updateStudentTabContent(studentTab.document, student, subject, newGrades);
         } else {
           alert('Invalid input. Please enter valid numbers.');
         }
+      } else {
+        // If gradesString is null or empty, clear the grades for that subject
+        student.grades[subject] = [];
+  
+        // Update the content of gradesList (passing an empty array to clear the content)
+        updateStudentTabContent(studentTab.document, student, subject, []);
       }
     });
   }
   
-  function updateStudentTabContent(studentDocument, subject, grades) {
+  function updateStudentTabContent(studentDocument, student, subject, grades) {
     // Find the container and gradesList
     const container = studentDocument.querySelector('div');
     const gradesList = container.querySelector('ul');
-  
+
     // Check if the listItem for the subject already exists
     const existingListItem = Array.from(gradesList.children).find(child => child.textContent.includes(subject));
   
@@ -155,12 +185,35 @@ const students = [
       const listItemText = `${subject}: ${grades.join(', ')} -> Average: ${calculateAverage(grades).toFixed(2)}`;
       const strong = existingListItem.querySelector('strong');
       strong.textContent = listItemText;
+      
+      // Check if the student has any grades
+      const studentHasGrades = hasGrades(student);
+      // Ustaw tło strony na szare, jeśli nie ma ocen
+      if (!studentHasGrades) {
+        studentDocument.body.style.backgroundColor = 'gray';
+      } else {
+        // Set default background color to white
+        studentDocument.body.style.backgroundColor = 'white';
+      }
+       
+     
     } else {
       // Add the new listItem to gradesList
       const listItemText = `${subject}: ${grades.join(', ')} -> Average: ${calculateAverage(grades).toFixed(2)}`;
       const listItem = studentDocument.createElement('li');
       const strong = studentDocument.createElement('strong');
       const textNode = studentDocument.createTextNode(listItemText);
+
+      // Check if the student has any grades
+      const studentHasGrades = hasGrades(student);
+
+      // Set background color to gray if there are no grades
+      if (!studentHasGrades) {
+        studentDocument.body.style.backgroundColor = 'gray';
+      } else {
+        // Set default background color to white
+        studentDocument.body.style.backgroundColor = 'white';
+      }
   
       strong.appendChild(textNode);
       listItem.appendChild(strong);
