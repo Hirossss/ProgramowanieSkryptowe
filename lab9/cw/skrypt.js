@@ -1,6 +1,6 @@
 const students = [
     {
-      image: 'image/studenci.png',
+      image: 'image/pan_student.png',
       name: 'Maciej Kot',
       grades: {
         'Matematyka': [4.5, 3.7, 5.0],
@@ -8,7 +8,7 @@ const students = [
       },
     },
     {
-      image: 'image/studenci1.png',
+      image: 'image/pani_student.png',
       name: 'Anna Nowak',
       grades: {
         'Matematyka': [4.0, 4.2, 3.8],
@@ -16,7 +16,7 @@ const students = [
       },
     },
     {
-      image: 'image/studenci1.png',
+      image: 'image/pan_student.png',
       name: 'Mariusz Kowal',
       grades: {
         'Matematyka': [],
@@ -24,7 +24,7 @@ const students = [
       },
     },
     {
-      image: 'image/studenci2.png',
+      image: 'image/pan_student.png',
       name: 'Jan Kowalski',
       grades: {
         'Matematyka': [3.9, 4.1, 4.5],
