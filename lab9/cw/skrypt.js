@@ -153,14 +153,20 @@ const students = [
       // Check if gradesString is null or empty
       if (gradesString !== null && gradesString.trim() !== '') {
         const newGrades = gradesString.split(',').map(grade => parseFloat(grade.trim()));
-        if (!newGrades.some(isNaN)) {
-          // Update the grades in the student object
-          student.grades[subject] = newGrades;
   
-          // Update the content of gradesList
-          updateStudentTabContent(studentTab.document, student, subject, newGrades);
-        } else {
-          alert('Invalid input. Please enter valid numbers.');
+        // Separate valid and invalid grades
+        const validGrades = newGrades.filter(grade => !isNaN(grade) && grade >= 2.0 && grade <= 5.0);
+        const invalidGrades = newGrades.filter(grade => isNaN(grade) || grade < 2.0 || grade > 5.0);
+  
+        // Update the grades in the student object for valid grades
+        student.grades[subject] = validGrades;
+  
+        // Update the content of gradesList
+        updateStudentTabContent(studentTab.document, student, subject, validGrades);
+  
+        // Display alert for invalid grades
+        if (invalidGrades.length > 0) {
+          studentTab.alert(`The following grades were ignored: ${invalidGrades.join(', ')}. Please enter valid numbers between 2.0 and 5.0.`);
         }
       } else {
         // If gradesString is null or empty, clear the grades for that subject
