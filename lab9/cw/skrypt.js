@@ -158,15 +158,18 @@ const students = [
         const validGrades = newGrades.filter(grade => !isNaN(grade) && grade >= 2.0 && grade <= 5.0);
         const invalidGrades = newGrades.filter(grade => isNaN(grade) || grade < 2.0 || grade > 5.0);
   
-        // Update the grades in the student object for valid grades
-        student.grades[subject] = validGrades;
-  
-        // Update the content of gradesList
-        updateStudentTabContent(studentTab.document, student, subject, validGrades);
-  
         // Display alert for invalid grades
         if (invalidGrades.length > 0) {
-          studentTab.alert(`The following grades were ignored: ${invalidGrades.join(', ')}. Please enter valid numbers between 2.0 and 5.0.`);
+          studentTab.alert(`Invalid grades detected. The following grades were ignored: ${invalidGrades.join(', ')}. Please enter valid numbers between 2.0 and 5.0.`);
+        }
+  
+        // Update the content of gradesList only if there are valid grades
+        if (validGrades.length > 0) {
+          // Update the grades in the student object for valid grades
+          student.grades[subject] = validGrades;
+  
+          // Update the content of gradesList
+          updateStudentTabContent(studentTab.document, student, subject, validGrades);
         }
       } else {
         // If gradesString is null or empty, clear the grades for that subject
