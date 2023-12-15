@@ -45,8 +45,10 @@ const students = [
     const studentsContainer = document.getElementById('studentsContainer');
 
     // Ustaw kontener na flexbox z właściwością space-around
+    studentsContainer.style.width = '82%';
     studentsContainer.style.display = 'flex';
     studentsContainer.style.justifyContent = 'space-between';
+    
 
     students.forEach(student => {
       // Create a card element for each student
