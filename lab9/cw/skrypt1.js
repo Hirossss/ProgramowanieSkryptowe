@@ -44,12 +44,18 @@ const students = [
     // Get the container in the main HTML
     const studentsContainer = document.getElementById('studentsContainer');
 
+    // Ustaw kontener na flexbox z właściwością space-around
+    studentsContainer.style.display = 'flex';
+    studentsContainer.style.justifyContent = 'space-between';
+
     students.forEach(student => {
       // Create a card element for each student
       const card = document.createElement('div');
       card.style.margin = '10px';
-      card.style.border = 'solid';
+      card.style.border = '1px solid black';
       card.style.width = 'fit-content';
+      card.style.heigth = 'fit-content';
+      card.style.padding = '10px';
 
       // Check if there are grades for the student
       const studentHasGrades = hasGrades(student);
