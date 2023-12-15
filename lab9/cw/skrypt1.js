@@ -47,7 +47,9 @@ const students = [
     students.forEach(student => {
       // Create a card element for each student
       const card = document.createElement('div');
-      card.style.margin = '30px';
+      card.style.margin = '10px';
+      card.style.border = 'solid';
+      card.style.width = 'fit-content';
 
       // Check if there are grades for the student
       const studentHasGrades = hasGrades(student);
@@ -78,6 +80,7 @@ const students = [
         const strong = document.createElement('strong');
         const textNode = document.createTextNode(`${subject}: ${student.grades[subject].join(', ')} -> Average: ${calculateAverage(student.grades[subject]).toFixed(2)}`);
 
+        strong.style.fontSize = 'small';
         strong.appendChild(textNode);
         listItem.appendChild(strong);
         gradesList.appendChild(listItem);
@@ -85,15 +88,44 @@ const students = [
 
       // Add elements to the card
       card.appendChild(heading);
-      card.appendChild(image);
+
+      // Dodaj obsługę dwukrotnego kliknięcia na nagłówek
+      heading.style.cursor = 'pointer';
+      let isHidden = true;
+  
+      heading.addEventListener('click', () => {
+        if (isHidden) {
+          // Dodaj elementy po podwójnym kliknięciu
+          card.appendChild(image);
+          card.appendChild(gradesHeading);
+          card.appendChild(gradesList);
+  
+          // Ustaw zawartość elementów po podwójnym kliknięciu
+          image.src = student.image;
+          image.alt = 'Student Image';
+          image.width = window.innerWidth * 0.3; // Ustaw stałą szerokość zdjęcia
+          image.height = window.innerHeight * 0.4; // Ustaw stałą wysokość zdjęcia
+  
+          gradesHeading.textContent = 'Grades';
+        } else {
+          // Wyczyść zawartość po kolejnym podwójnym kliknięciu
+          while (card.firstChild) {
+            card.removeChild(card.firstChild);
+          }
+  
+          // Dodaj ponownie nagłówek
+          card.appendChild(heading);
+        }
+  
+        isHidden = !isHidden;
+      });
+
+      gradesList.style.cursor = 'pointer';
 
       // Add event listener for double-click on gradesList
       gradesList.addEventListener('dblclick', () => {
         editGrades(card, student);
       });
-
-      card.appendChild(gradesHeading);
-      card.appendChild(gradesList);
 
       // Add the card to the main container
       studentsContainer.appendChild(card);

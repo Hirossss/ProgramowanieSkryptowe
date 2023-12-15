@@ -105,7 +105,7 @@ const students = [
           container.appendChild(gradesHeading);
           container.appendChild(gradesList);
   
-          // Ustaw zawartość elementów po podwójnym kliknięciu
+          // Ustaw zawartość elementów po kliknięciu
           image.src = student.image;
           image.alt = 'Student Image';
           image.width = window.innerWidth * 0.3; // Ustaw stałą szerokość zdjęcia
