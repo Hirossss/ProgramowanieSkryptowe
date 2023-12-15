@@ -48,6 +48,7 @@ const students = [
     studentsContainer.style.width = '82%';
     studentsContainer.style.display = 'flex';
     studentsContainer.style.justifyContent = 'space-between';
+    studentsContainer.style.flexWrap = 'wrap';
     
 
     students.forEach(student => {
@@ -55,8 +56,8 @@ const students = [
       const card = document.createElement('div');
       card.style.margin = '10px';
       card.style.border = '1px solid black';
-      card.style.width = 'fit-content';
-      card.style.heigth = 'fit-content';
+      card.style.height = 'auto'; // Dopasuj wysokość do zawartości
+      card.style.width = 'auto'; // Dopasuj szerokość do zawartości
       card.style.padding = '10px';
 
       // Check if there are grades for the student
