@@ -56,7 +56,7 @@ const students = [
       const card = document.createElement('div');
       card.style.margin = '10px';
       card.style.border = '1px solid black';
-      card.style.height = 'auto'; // Dopasuj wysokość do zawartości
+      card.style.height = 'min-content'; // Dopasuj wysokość do zawartości
       card.style.width = 'auto'; // Dopasuj szerokość do zawartości
       card.style.padding = '10px';
 
@@ -109,7 +109,7 @@ const students = [
           card.appendChild(gradesHeading);
           card.appendChild(gradesList);
   
-          // Ustaw zawartość elementów po podwójnym kliknięciu
+          // Ustaw zawartość elementów po kliknięciu
           image.src = student.image;
           image.alt = 'Student Image';
           image.width = window.innerWidth * 0.3; // Ustaw stałą szerokość zdjęcia
