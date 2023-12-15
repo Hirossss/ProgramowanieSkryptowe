@@ -47,7 +47,7 @@ const students = [
     // Ustaw kontener na flexbox z właściwością space-around
     studentsContainer.style.width = '82%';
     studentsContainer.style.display = 'flex';
-    studentsContainer.style.justifyContent = 'space-between';
+    studentsContainer.style.justifyContent = 'space-evenly';
     studentsContainer.style.flexWrap = 'wrap';
     
 
@@ -79,8 +79,8 @@ const students = [
       heading.style.width = 'fit-content';
       image.src = student.image;
       image.alt = 'Student Image';
-      image.width = window.innerWidth * 0.3;
-      image.height = window.innerHeight * 0.4;
+      image.style.width = '310px';
+      image.style.height = '260px';
       gradesHeading.textContent = 'Grades';
 
       // Add grades to the list
