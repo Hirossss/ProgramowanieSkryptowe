@@ -13,14 +13,13 @@ import { argv } from 'node:process';
 /************************* */
 function read_sync() {
     console.log(`1.\t\x1B[32mWykonano pierwszą linię funkcji "read_sync()"\x1B[0m`);
-    let data = fs.readFileSync(argv[1]);
     console.log('2.\t\x1B[33mZakończono wczytywanie zawartości pliku — zawartość jest dostępna w zmiennej \'data\'\x1B[0m');
     console.log(`3.\t\x1B[32mWykonano ostatnią linię funkcji "read_sync()"\x1B[0m`);
 }
 
 function read_async() {
     console.log(`1.\t\x1B[32mWykonano pierwszą linię funkcji "read_async()"\x1B[0m`);
-    fs.readFile(argv[1], (err, data) => {
+    fs.readFile(argv[1], (err) => {
         if (err) throw err;
         console.log('2.\t\x1B[33mZakończono wczytywanie zawartości pliku — zawartość jest dostępna w zmiennej \'data\'\x1B[0m');
     });
