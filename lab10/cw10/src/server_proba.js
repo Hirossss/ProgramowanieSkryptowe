@@ -134,8 +134,8 @@ function requestListener(request, response) {
 
 function getGuestBookEntries() {
   try {
-    const data = fs.readFileSync("guestbook.txt", "utf8");
-    return data.split("\n").filter((entry) => entry.trim() !== "");
+    let data = fs.readFileSync("guestbook.txt", "utf8");
+    return data.split("\n").filter((entry) => entry.trim() !== ""); // to jest tablica
   } catch (err) {
     console.error("Error reading guest book file:", err.message);
     return [];
