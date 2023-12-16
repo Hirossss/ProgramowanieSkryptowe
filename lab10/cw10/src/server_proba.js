@@ -26,30 +26,38 @@ function requestListener(request, response) {
         </head>
         <body>
           <main>
-            <h1>Guest Book</h1>
-            <form method="GET" action="/submit">
-              <label for="name">Name:</label>
-              <input name="name" required>
-              <br>
-              <label for="message">Message:</label>
-              <textarea name="message" required></textarea>
-              <br>
-              <input type="submit">
-              <input type="reset">
-            </form>
-            <h2>Previous Entries</h2>
+            <h1>Księga gości</h1>
               <ul>
                 ${getGuestBookEntries()
-                  .map(
-                    (entry) => `
-                    
-                    <strong>${entry.split(" ")[0]}</strong>
-                    <p>${entry.slice(entry.indexOf(" ") + 1)}</p>
-                    
-                    `
-                  )
+                  .map((entry) => {
+                    // Dzielimy linię na tablicę słów
+                    const words = entry.split(" ");
+
+                    // Przypisujemy pierwsze dwa słowa do zmiennej name
+                    const name = words.slice(0, 2).join(" ");
+
+                    // Przypisujemy resztę słów jako wiadomość
+                    const message = words.slice(2).join(" ");
+
+                    return `
+                      <h2>${name}</h2>
+                      <p>${message}</p>
+                    `;
+                  })
                   .join("")}
                 </ul>
+            <form method="GET" action="/submit" style="width: 90%;">
+                <h2>Nowy wpis:</h2>
+                <label for="name">Twoje Imię i Nazwisko</label>
+                <br>
+                <input name="name" required style="width: 100%; height: 30px; margin-top: 10px; margin-bottom: 20px;">
+                <br>
+                <label for="message">Treść wpisu</label>
+                <br>
+                <textarea name="message" required style="width: 100%;height: 50px; margin-top: 10px; margin-bottom: 20px;"></textarea>
+                <br>
+                <input type="submit" value="Dodaj wpis">
+            </form>
           </main>
         </body>
       </html>
@@ -75,30 +83,38 @@ function requestListener(request, response) {
           </head>
           <body>
             <main>
-              <h1>Guest Book</h1>
-              <form method="GET" action="/submit">
-                <label for="name">Name:</label>
-                <input name="name" required>
-                <br>
-                <label for="message">Message:</label>
-                <textarea name="message" required></textarea>
-                <br>
-                <input type="submit">
-                <input type="reset">
-              </form>
-              <h2>Previous Entries</h2>
+              <h1>Księga gości</h1>
                 <ul>
-                ${getGuestBookEntries()
-                    .map(
-                    (entry) => `
-                    
-                    <strong>${entry.split(" ")[0]}</strong>
-                    <p>${entry.slice(entry.indexOf(" ") + 1)}</p>
-                    
-                    `
-                    )
+                  ${getGuestBookEntries()
+                    .map((entry) => {
+                      // Dzielimy linię na tablicę słów
+                      const words = entry.split(" ");
+
+                      // Przypisujemy pierwsze dwa słowa do zmiennej name
+                      const name = words.slice(0, 2).join(" ");
+
+                      // Przypisujemy resztę słów jako wiadomość
+                      const message = words.slice(2).join(" ");
+
+                      return `
+                        <h2>${name}</h2>
+                        <p>${message}</p>
+                      `;
+                    })
                     .join("")}
-                </ul>
+                  </ul>
+              <form method="GET" action="/submit" style="width: 90%;">
+                  <h2>Nowy wpis:</h2>
+                  <label for="name">Twoje Imię i Nazwisko</label>
+                  <br>
+                  <input name="name" required style="width: 100%; height: 30px; margin-top: 10px; margin-bottom: 20px;">
+                  <br>
+                  <label for="message">Treść wpisu</label>
+                  <br>
+                  <textarea name="message" required style="width: 100%;height: 50px; margin-top: 10px; margin-bottom: 20px;"></textarea>
+                  <br>
+                  <input type="submit" value="Dodaj wpis">
+              </form>
             </main>
           </body>
         </html>
