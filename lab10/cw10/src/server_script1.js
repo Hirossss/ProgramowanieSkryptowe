@@ -67,6 +67,23 @@ function requestListener(request, response) {
 </html>`);
     /* ************************************************** */
     response.end(); // The end of the response — send it to the browser
+  } else if (url.pathname === "/" && request.method === "POST") {
+    // Handling POST requests to "/"
+    let body = "";
+
+    request.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+
+    request.on("end", () => {
+      // Assuming the body contains form-encoded data, parse it
+      const formData = new URLSearchParams(body);
+      const name = formData.get("name");
+
+      response.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+      response.write(`Hello ${name}`);
+      response.end();
+    });
   } else if (url.pathname === "/submit" && request.method === "GET") {
 
   /* ---------------------- */
