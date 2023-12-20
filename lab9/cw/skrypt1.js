@@ -1,50 +1,56 @@
 const students = [
-    {
-      image: 'image/pan_student.png',
-      name: 'Maciej Kot',
-      grades: {
-        'Matematyka': [4.5, 3.7, 5.0],
-        'Fizyka': [4.5, 3.0],
-      },
+  {
+    image: "image/pan_student.png",
+    name: "Maciej Kot",
+    grades: {
+      Matematyka: [4.5, 3.7, 5.0],
+      Fizyka: [4.5, 3.0],
     },
-    {
-      image: 'image/pani_student.png',
-      name: 'Anna Nowak',
-      grades: {
-        'Matematyka': [4.0, 4.2, 3.8],
-        'Fizyka': [3.5, 4.0],
-      },
+  },
+  {
+    image: "image/pani_student.png",
+    name: "Anna Nowak",
+    grades: {
+      Matematyka: [4.0, 4.2, 3.8],
+      Fizyka: [3.5, 4.0],
     },
-    {
-      image: 'image/pan_student.png',
-      name: 'Mariusz Kowal',
-      grades: {
-        'Matematyka': [],
-        'Fizyka': [],
-      },
+  },
+  {
+    image: "image/pan_student.png",
+    name: "Mariusz Kowal",
+    grades: {
+      Matematyka: [],
+      Fizyka: [],
     },
-    {
-      image: 'image/pan_student.png',
-      name: 'Jan Kowalski',
-      grades: {
-        'Matematyka': [3.9, 4.1, 4.5],
-        'Fizyka': [4.2, 3.9],
-      },
+  },
+  {
+    image: "image/pan_student.png",
+    name: "Jan Kowalski",
+    grades: {
+      Matematyka: [3.9, 4.1, 4.5],
+      Fizyka: [4.2, 3.9],
     },
-    // Dodaj inne dane studentów...
-  ];
+  },
+  {
+    image: "image/pan_student.png",
+    name: "Jan Kot",
+    grades: {
+      Matematyka: [3.9, 4.1, 4.5],
+      Fizyka: [4.2, 3.9],
+    },
+  },
+];
 
 
-  // Function to check if a student has any grades
   function hasGrades(student) {
     return Object.keys(student.grades).some(subject => student.grades[subject].length > 0);
   }
   
   function openStudentCards() {
-    // Get the container in the main HTML
+    // Odnosimy sie do div w HTML
     const studentsContainer = document.getElementById('studentsContainer');
 
-    // Ustaw kontener na flexbox z właściwością space-around
+    // Stylowanie, flexbox
     studentsContainer.style.width = '82%';
     studentsContainer.style.display = 'flex';
     studentsContainer.style.justifyContent = 'space-evenly';
@@ -52,29 +58,27 @@ const students = [
     
 
     students.forEach(student => {
-      // Create a card element for each student
+      // Dla kazdego studetna powstaje jego karta
       const card = document.createElement('div');
       card.style.margin = '10px';
       card.style.border = '1px solid black';
-      card.style.height = 'min-content'; // Dopasuj wysokość do zawartości
-      card.style.width = 'auto'; // Dopasuj szerokość do zawartości
+      card.style.height = 'min-content'; 
+      card.style.width = 'auto';
       card.style.padding = '10px';
 
-      // Check if there are grades for the student
+      // Sprawdzamy czy uczen ma oceny zeby ustawic tlo
       const studentHasGrades = hasGrades(student);
 
-      // Set the background color of the card based on grades
       if (!studentHasGrades) {
         card.style.backgroundColor = 'gray';
       }
 
-      // Create elements for the card
+      // Stylujemy karty
       const heading = document.createElement('h1');
       const image = document.createElement('img');
       const gradesHeading = document.createElement('h2');
       const gradesList = document.createElement('ul');
 
-      // Set content for the elements
       heading.textContent = student.name;
       heading.style.width = 'fit-content';
       image.src = student.image;
@@ -83,7 +87,7 @@ const students = [
       image.style.height = '260px';
       gradesHeading.textContent = 'Grades';
 
-      // Add grades to the list
+      // Dodajemy oceny z kolekcji
       Object.keys(student.grades).forEach(subject => {
         const listItem = document.createElement('li');
         const strong = document.createElement('strong');
@@ -95,34 +99,32 @@ const students = [
         gradesList.appendChild(listItem);
       });
 
-      // Add elements to the card
+      // Domyslnie sam naglowek
       card.appendChild(heading);
 
-      // Dodaj obsługę dwukrotnego kliknięcia na nagłówek
+      // EventListener dla naglowka
       heading.style.cursor = 'pointer';
       let isHidden = true;
   
       heading.addEventListener('click', () => {
         if (isHidden) {
-          // Dodaj elementy po podwójnym kliknięciu
           card.appendChild(image);
           card.appendChild(gradesHeading);
           card.appendChild(gradesList);
   
-          // Ustaw zawartość elementów po kliknięciu
+          // Dodajemy reszte zawartosci po kliknieciu
           image.src = student.image;
           image.alt = 'Student Image';
-          image.width = window.innerWidth * 0.3; // Ustaw stałą szerokość zdjęcia
-          image.height = window.innerHeight * 0.4; // Ustaw stałą wysokość zdjęcia
+          image.width = window.innerWidth * 0.3; 
+          image.height = window.innerHeight * 0.4;
   
           gradesHeading.textContent = 'Grades';
         } else {
-          // Wyczyść zawartość po kolejnym podwójnym kliknięciu
+          // Chowamy zawartosc przy ponownym kliknieciu
           while (card.firstChild) {
             card.removeChild(card.firstChild);
           }
-  
-          // Dodaj ponownie nagłówek
+          // Dodajemy z powrotem sam naglowek
           card.appendChild(heading);
         }
   
@@ -131,17 +133,16 @@ const students = [
 
       gradesList.style.cursor = 'pointer';
 
-      // Add event listener for double-click on gradesList
+      // Doubleclick na oceny
       gradesList.addEventListener('dblclick', () => {
         editGrades(card, student);
       });
 
-      // Add the card to the main container
+      // Dodajemy studenta na koniec do kontenera
       studentsContainer.appendChild(card);
     });
   }
   
-  // Funkcja do obliczania średniej ocen
   function calculateAverage(grades) {
     if (grades.length === 0) {
       return 0;
@@ -153,15 +154,14 @@ const students = [
   
   // Funkcja do edytowania ocen po podwójnym kliknięciu
 function editGrades(card, student) {
-  // Utwórz okno dialogowe dla każdego przedmiotu w obiekcie studenta
+  // Tworzymy okno dialogowe - prompt
   Object.keys(student.grades).forEach(subject => {
     const gradesString = prompt(`Edit grades for ${subject} (comma-separated):`, student.grades[subject].join(', '));
 
-    // Sprawdź, czy gradesString jest null lub pusty
     if (gradesString !== null && gradesString.trim() !== '') {
       const newGrades = gradesString.split(',').map(grade => parseFloat(grade.trim()));
 
-      // Podziel oceny na prawidłowe i nieprawidłowe
+      // Obsługa ocen
       const validGrades = newGrades.filter(grade => !isNaN(grade) && grade >= 2.0 && grade <= 5.0);
       const invalidGrades = newGrades.filter(grade => isNaN(grade) || grade < 2.0 || grade > 5.0);
 
@@ -172,17 +172,14 @@ function editGrades(card, student) {
 
       // Zaktualizuj zawartość gradesList tylko w przypadku prawidłowych ocen
       if (validGrades.length > 0) {
-        // Zaktualizuj oceny w obiekcie studenta dla prawidłowych ocen
         student.grades[subject] = validGrades;
 
-        // Zaktualizuj zawartość gradesList
         updateStudentCardContent(card, student, subject, validGrades);
       }
     } else {
       // Jeśli gradesString jest null lub pusty, wyczyść oceny dla tego przedmiotu
       student.grades[subject] = [];
 
-      // Zaktualizuj zawartość gradesList (przekazując pustą tablicę, aby wyczyścić zawartość)
       updateStudentCardContent(card, student, subject, []);
     }
   });
@@ -210,7 +207,6 @@ function updateStudentCardContent(card, student, subject, grades) {
     if (!studentHasGrades) {
       card.style.backgroundColor = 'gray';
     } else {
-      // Ustaw domyślny kolor tła na biały
       card.style.backgroundColor = 'white';
     }
   } else {
@@ -220,10 +216,8 @@ function updateStudentCardContent(card, student, subject, grades) {
     const strong = document.createElement('strong');
     const textNode = document.createTextNode(listItemText);
 
-    // Sprawdź, czy student ma jakiekolwiek oceny
     const studentHasGrades = hasGrades(student);
 
-    // Ustaw kolor tła karty na podstawie ocen
     if (!studentHasGrades) {
       card.style.backgroundColor = 'gray';
     } else {
@@ -237,5 +231,4 @@ function updateStudentCardContent(card, student, subject, grades) {
   }
 }
 
-// Wywołaj funkcję otwierającą nowe karty przy załadowaniu strony
 openStudentCards();
