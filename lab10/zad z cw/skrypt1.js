@@ -233,6 +233,10 @@ function updateStudentCardContent(card, student, subject, grades) {
 
 openStudentCards();
 
+
+// Obsluga formularza
+
+
 // Kolekcje z danymi zahardkodowanymi
 const subjects = ['Matematyka', 'Fizyka', 'Informatyka'];
 
