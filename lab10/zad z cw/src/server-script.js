@@ -3,7 +3,8 @@
 
 import http from "node:http";
 import { URL } from "node:url";
-
+import path from "node:path";
+import fs from "node:fs";
 /**
  * Handles incoming requests.
  *
@@ -27,6 +28,14 @@ function serveStaticFile(response, filePath, contentType) {
   fileStream.pipe(response);
 }
 
+function handleStaticRequest(response, urlPath, contentType) {
+  const currentModuleDirectory = decodeURI(
+    path.dirname(new URL(import.meta.url).pathname)
+  );
+  const filePath = path.join(currentModuleDirectory, `../${urlPath}`);
+  serveStaticFile(response, filePath, contentType);
+}
+
 function requestListener(request, response) {
   console.log("--------------------------------------");
   console.log(`The relative URL of the current request: ${request.url}`);
@@ -47,11 +56,30 @@ function requestListener(request, response) {
   /* ---------------- */
   /* Route "GET('/')" */
   /* ---------------- */
+  // Obsługa głównej strony
+  // Obsługa głównej strony
   if (url.pathname === "/" && request.method === "GET") {
-    // Serve the main HTML file
-    const filePath = path.join(__dirname, "path/to/your/main.html");
-    serveStaticFile(response, filePath, "text/html; charset=utf-8");
-    /* ************************************************** */
+    handleStaticRequest(
+      response,
+      "strona-z-canvas.html",
+      "text/html; charset=utf-8"
+    );
+  }
+  // Obsługa plików JavaScript
+  else if (url.pathname === "/skrypt1.js" && request.method === "GET") {
+    handleStaticRequest(
+      response,
+      "skrypt1.js",
+      "application/javascript"
+    );
+  }
+  // Obsługa plików CSS
+  else if (url.pathname === "/style-b.css" && request.method === "GET") {
+    handleStaticRequest(response, "style-b.css", "text/css");
+  }
+  // Obsługa obrazów
+  else if (url.pathname.startsWith("/image/") && request.method === "GET") {
+    handleStaticRequest(response, `${url.pathname}`, "image/jpeg");
   } else if (url.pathname === "/" && request.method === "POST") {
     // Handling POST requests to "/"
     let body = "";
