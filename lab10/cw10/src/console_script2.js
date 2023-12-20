@@ -43,7 +43,9 @@ function executeCommands() {
   );
 
   const rl = readline.createInterface({
+    // eslint-disable-next-line no-undef
     input: process.stdin,
+    // eslint-disable-next-line no-undef
     output: process.stdout,
     terminal: false
   });
@@ -63,6 +65,7 @@ function executeCommands() {
 }
 
 function main() {
+  // eslint-disable-next-line no-undef
   const option = process.argv[2];
 
   if (option === "--sync") {
