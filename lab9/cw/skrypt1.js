@@ -1,37 +1,45 @@
 const students = [
-    {
-      image: 'image/pan_student.png',
-      name: 'Maciej Kot',
-      grades: {
-        'Matematyka': [4.5, 3.7, 5.0],
-        'Fizyka': [4.5, 3.0],
-      },
+  {
+    image: "image/pan_student.png",
+    name: "Maciej Kot",
+    grades: {
+      Matematyka: [4.5, 3.7, 5.0],
+      Fizyka: [4.5, 3.0],
     },
-    {
-      image: 'image/pani_student.png',
-      name: 'Anna Nowak',
-      grades: {
-        'Matematyka': [4.0, 4.2, 3.8],
-        'Fizyka': [3.5, 4.0],
-      },
+  },
+  {
+    image: "image/pani_student.png",
+    name: "Anna Nowak",
+    grades: {
+      Matematyka: [4.0, 4.2, 3.8],
+      Fizyka: [3.5, 4.0],
     },
-    {
-      image: 'image/pan_student.png',
-      name: 'Mariusz Kowal',
-      grades: {
-        'Matematyka': [],
-        'Fizyka': [],
-      },
+  },
+  {
+    image: "image/pan_student.png",
+    name: "Mariusz Kowal",
+    grades: {
+      Matematyka: [],
+      Fizyka: [],
     },
-    {
-      image: 'image/pan_student.png',
-      name: 'Jan Kowalski',
-      grades: {
-        'Matematyka': [3.9, 4.1, 4.5],
-        'Fizyka': [4.2, 3.9],
-      },
+  },
+  {
+    image: "image/pan_student.png",
+    name: "Jan Kowalski",
+    grades: {
+      Matematyka: [3.9, 4.1, 4.5],
+      Fizyka: [4.2, 3.9],
     },
-  ];
+  },
+  {
+    image: "image/pan_student.png",
+    name: "Jan Kot",
+    grades: {
+      Matematyka: [3.9, 4.1, 4.5],
+      Fizyka: [4.2, 3.9],
+    },
+  },
+];
 
 
   function hasGrades(student) {
