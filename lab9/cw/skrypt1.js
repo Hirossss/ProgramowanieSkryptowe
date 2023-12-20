@@ -199,7 +199,6 @@ function updateStudentCardContent(card, student, subject, grades) {
     if (!studentHasGrades) {
       card.style.backgroundColor = 'gray';
     } else {
-      // Ustaw domyślny kolor tła na biały
       card.style.backgroundColor = 'white';
     }
   } else {
@@ -209,10 +208,8 @@ function updateStudentCardContent(card, student, subject, grades) {
     const strong = document.createElement('strong');
     const textNode = document.createTextNode(listItemText);
 
-    // Sprawdź, czy student ma jakiekolwiek oceny
     const studentHasGrades = hasGrades(student);
 
-    // Ustaw kolor tła karty na podstawie ocen
     if (!studentHasGrades) {
       card.style.backgroundColor = 'gray';
     } else {
@@ -226,5 +223,4 @@ function updateStudentCardContent(card, student, subject, grades) {
   }
 }
 
-// Wywołaj funkcję otwierającą nowe karty przy załadowaniu strony
 openStudentCards();
