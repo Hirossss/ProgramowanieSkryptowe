@@ -48,6 +48,27 @@ app.get("/", async function (request, response) {
   }
 });
 
+app.get("/WI", async function (request, response) {
+  try {
+    const client = new MongoClient("mongodb://127.0.0.1:27017");
+    await client.connect();
+
+    const db = client.db("AGH");
+    const collection = db.collection("students");
+
+    const students = await collection.find({}).toArray();
+
+    const hasFacultyFlag = true;
+
+    console.log(students);
+    response.render("index", { students: students, hasFacultyFlag });
+    client.close();
+  } catch (error) {
+    console.error("Błąd podczas pobierania danych z bazy:", error);
+    response.status(500).send("Błąd serwera");
+  }
+});
+
 app.get("/submit", (request, response) => {
   response.render("submit", { name: "request" });
 });

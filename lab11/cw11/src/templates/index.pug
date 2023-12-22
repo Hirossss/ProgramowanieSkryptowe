@@ -37,9 +37,12 @@ html(lang='en')
                     tr
                         th Nazwisko
                         th Imię
+                        if hasFacultyFlag
+                            th Wydział
                 tbody
                     each student in students
                         tr
                             td= student.lastName
                             td= student.firstName
-                
+                            if hasFacultyFlag
+                              td= student.facultyAcronym                
