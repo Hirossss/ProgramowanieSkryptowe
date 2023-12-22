@@ -10,6 +10,7 @@ const app = express();
 
 app.use(morgan("dev")); // Place an HTTP request recorder on the stack — each request will be logged in the console in 'dev' format
 app.use(bodyParser.urlencoded({ extended: true })); // Dodalem body parser pomiedzy, via stackoverflow.
+app.use(express.static("static")); 
 
 /* ******** */
 /* "Routes" */
@@ -38,6 +39,8 @@ app.get("/", (request, response) => {
                 <input type="submit">
                 <input type="reset">
              </form>
+             <br>
+             <img src="/img/pan_student.png" alt="student">
           </main>
        </body>
     </html>    
