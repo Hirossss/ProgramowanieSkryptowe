@@ -41,8 +41,9 @@ html(lang='en')
                             th Wydział
                 tbody
                     each student in students
-                        tr
-                            td= student.lastName
-                            td= student.firstName
-                            if hasFacultyFlag
-                              td= student.facultyAcronym                
+                      if !hasFacultyFlag || (hasFacultyFlag && student.facultyAcronym === facultyAcronym)
+                          tr
+                              td= student.lastName
+                              td= student.firstName
+                              if hasFacultyFlag
+                                  td= student.facultyAcronym             

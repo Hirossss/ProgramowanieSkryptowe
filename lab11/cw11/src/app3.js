@@ -48,8 +48,9 @@ app.get("/", async function (request, response) {
   }
 });
 
-app.get("/WI", async function (request, response) {
+app.get("/:facultyAcronym", async function (request, response) {
   try {
+    const facultyAcronym = request.params.facultyAcronym; // Pobieramy parametr z URL
     const client = new MongoClient("mongodb://127.0.0.1:27017");
     await client.connect();
 
@@ -58,10 +59,10 @@ app.get("/WI", async function (request, response) {
 
     const students = await collection.find({}).toArray();
 
-    const hasFacultyFlag = true;
+    const hasFacultyFlag = !!facultyAcronym;
 
     console.log(students);
-    response.render("index", { students: students, hasFacultyFlag });
+    response.render("index", { students: students, hasFacultyFlag, facultyAcronym });
     client.close();
   } catch (error) {
     console.error("Błąd podczas pobierania danych z bazy:", error);
