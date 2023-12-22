@@ -22,6 +22,7 @@ app.set("view engine", "pug");
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true })); // Dodalem body parser pomiedzy, via stackoverflow.
+app.use(express.static("static"));
 
 /* ******** */
 /* "Routes" */
@@ -32,13 +33,11 @@ app.get("/", (request, response) => {
 });
 
 app.get("/submit", (request, response) => {
-  response.set("Content-Type", "text/plain");
-  response.send(`Hello ${request.query.name}`);
+  response.render("submit", { name: "róża" });
 });
 
 app.post("/", (request, response) => {
-  response.set("Content-Type", "text/plain");
-  response.send(`Hello ${request.body.name}`);
+  response.render("submit", { name: request.body.name });
 });
 
 /* ************************************************ */
