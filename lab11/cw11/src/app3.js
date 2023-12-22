@@ -4,17 +4,7 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 import path from "path";
 import bodyParser from "body-parser"; 
-
-let students = [
-  {
-    firstName: "Jan",
-    lastName: "Kowalski",
-  },
-  {
-    firstName: "Anna",
-    lastName: "Nowak",
-  },
-];
+import { MongoClient } from "mongodb"; 
 
 /* *************************** */
 /* Configuring the application */
@@ -39,12 +29,27 @@ app.use(express.static("static"));
 /* "Routes" */
 /* ******** */
 
-app.get("/", (request, response) => {
-  response.render("index", { students: students }); // Render the 'index' view
+app.get("/", async function (request, response) {
+  try {
+    const client = new MongoClient("mongodb://127.0.0.1:27017");
+    await client.connect();
+
+    const db = client.db("AGH");
+    const collection = db.collection("students");
+
+    const students = await collection.find({}).toArray();
+
+    console.log(students)
+    response.render("index", { students: students });
+    client.close()
+  } catch (error) {
+    console.error("Błąd podczas pobierania danych z bazy:", error);
+    response.status(500).send("Błąd serwera");
+  }
 });
 
 app.get("/submit", (request, response) => {
-  response.render("submit", { name: "róża" });
+  response.render("submit", { name: "request" });
 });
 
 app.post("/", (request, response) => {
