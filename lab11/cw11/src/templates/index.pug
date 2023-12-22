@@ -1,3 +1,20 @@
+style.
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
 doctype html
 html(lang='en')
     head
@@ -15,4 +32,14 @@ html(lang='en')
                 input(type='reset')
             br
             img(src='/img/pan_student.png', alt='student')
-            
+            table
+                thead
+                    tr
+                        th Nazwisko
+                        th Imię
+                tbody
+                    each student in students
+                        tr
+                            td= student.lname
+                            td= student.fname
+                
