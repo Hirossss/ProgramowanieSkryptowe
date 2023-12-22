@@ -44,7 +44,7 @@ app.get("/", (request, response) => {
 });
 
 app.get("/submit", (request, response) => {
-  response.render("submit", { name: "róża" });
+  response.render("submit", { name: request.query.name });
 });
 
 app.post("/", (request, response) => {

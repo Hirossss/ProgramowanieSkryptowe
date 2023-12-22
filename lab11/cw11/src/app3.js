@@ -70,7 +70,7 @@ app.get("/WI", async function (request, response) {
 });
 
 app.get("/submit", (request, response) => {
-  response.render("submit", { name: "request" });
+  response.render("submit", { name: request.query.name });
 });
 
 app.post("/", (request, response) => {
