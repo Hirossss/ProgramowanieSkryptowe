@@ -1,5 +1,3 @@
-//- @author Stanisław Polak <polak@agh.edu.pl>
-
 doctype html
 html(lang='en')
     head
@@ -57,16 +55,13 @@ html(lang='en')
             function getName(http_method){
                 let name = '';
 
-                // TODO: Here put the code that, depending on the value of the 'http_method' variable — GET / POST — assigns the 'name' variable to the value of the 'name_GET' / 'name_POST' form field
-                
                 if (http_method == "GET"){
                   name = document.getElementById("name_GET").value;
                 }
                 else if (http_method == "POST") {
                   name = document.getElementById("name_POST").value;
                 }
-
-                return name;
+               return name;
             }
             
             /**************************************************************************************/
@@ -87,7 +82,6 @@ html(lang='en')
                 //-----------------------
 
                 name = encodeURIComponent(name);
-
                 // If the request was successful
                 xhr.addEventListener("load", function (evt) {                          
                     if (xhr.status === 200) {
@@ -95,8 +89,7 @@ html(lang='en')
                         console.log(`HTTP method ⟶\t\t${http_method}\nResponse type ⟶\t${response_type}\nInput data ⟶\t\t${name}`);
                         console.log(xhr.response);
                         console.groupEnd();
-
-                        if(show_alert){
+                        if(show_alert) {
                           const alert = document.getElementById("alert");
                           const temp = document.getElementById("inside");
                           if (temp != null) {temp.remove();}
@@ -108,15 +101,14 @@ html(lang='en')
                                 para.textContent = JSON.stringify(xhr.response);
                                 break;
                               case 'document':
-                                para.textContent = xhr.response.activeElement.outerHTML;
+                                para.textContent = xhr.response ? new XMLSerializer().serializeToString(xhr.response) : ''; // jesli xhr.response to wykona sie to przed :
                                 break;
                               default:
                                 para.textContent = xhr.response;
+                            }
+                          in_div.appendChild(para);
+                          alert.appendChild(in_div);
                         }
-                        in_div.appendChild(para);
-                        alert.appendChild(in_div);
-                        }
-
                         else { 
                             results.set(`ajax ${http_method} ${response_type}`, xhr.response);
                             dispatchEvent(received); 
@@ -135,6 +127,7 @@ html(lang='en')
                 xhr.responseType = response_type;  // Type of data received by the 'load' observer
                 xhr.withCredentials = true; // Do not modify or remove
 
+                // sprawdzenie czy jest GET czy POST
                 if (http_method == "GET") {
                   xhr.open(http_method, `http://localhost:8000/submit?name=${name}`, true);
                 }
@@ -155,7 +148,6 @@ html(lang='en')
                         xhr.setRequestHeader('Accept', 'application/xml');
                         break;
                 }  
-                
                 if (http_method == "GET") {
                   xhr.send(null);
                 }
@@ -183,14 +175,11 @@ html(lang='en')
                         accept = 'application/xml';
                         break;
                 }
-                //--------------------------------------------------------------------------
-                // Configuration and execution of the (asynchronous) query to the web server
-                //--------------------------------------------------------------------------
-                let temp_return = '';
-                let temp_return_url = '';
+                let tmp = '';
+                let tmp_str = '';
                 if (http_method == "GET") {
-                  temp_return_url = `http://localhost:8000/submit?name=${name}`;
-                  temp_return = {
+                  tmp_str = `http://localhost:8000/submit?name=${name}`;
+                  tmp = {
                     method: http_method,
                     credentials: "include", // Do not modify or remove
                     headers: {
@@ -202,8 +191,8 @@ html(lang='en')
                   };
                 }
                 else if (http_method == "POST") {
-                  temp_return_url = `http://localhost:8000/submit`;
-                  temp_return = {
+                  tmp_str = `http://localhost:8000/submit`;
+                  tmp = {
                     method: http_method,
                     body: `name=${name}`,
                     credentials: "include", // Do not modify or remove
@@ -216,8 +205,11 @@ html(lang='en')
                     }
                   };
                 }
+                //--------------------------------------------------------------------------
+                // Configuration and execution of the (asynchronous) query to the web server
+                //--------------------------------------------------------------------------
                 try {
-                    const response = await fetch(temp_return_url, temp_return);
+                    const response = await fetch(tmp_str, tmp);
                     if (!response.ok)
                         throw Error(response.statusText);
 
@@ -227,16 +219,16 @@ html(lang='en')
 
                     if (!response.headers.get('content-type')?.includes('application/json')) {
                         // If the received data is plain text or an XML document
-                        result = response.text(); 
+                        result = await response.text(); 
                     }
                     else {
                         //If the received data is a JSON document
-                        result = response.json();
+                        result = await response.json();
                     }
                     console.log(result);
                     console.groupEnd();   
-                    if(show_alert){
-                        const alert = document.getElementById("alert");
+                    if(show_alert) {
+                          const alert = document.getElementById("alert");
                           const temp = document.getElementById("inside");
                           if (temp != null) {temp.remove();}
                           const in_div = document.createElement("div");
@@ -250,7 +242,7 @@ html(lang='en')
                           }
                           in_div.appendChild(para);
                           alert.appendChild(in_div);
-                    }
+                        } 
                     else {
                         results.set(`fetch ${http_method} ${response_type}`, result);
                         dispatchEvent(received);
@@ -268,14 +260,17 @@ html(lang='en')
         script(class="mocha-init").
             mocha.setup('bdd');
             mocha.checkLeaks(); 
+        div(id="alert")
         main
             table
                 tr
                     th  
                     th GET
                     th POST
+                    th OTHER
                 tr 
                     th(colspan='3', style=' background-color: #04556D;') Without AJAX and Fetch API
+                    th CITY
                 tr
                     th HTTP
                     td 
@@ -290,6 +285,12 @@ html(lang='en')
                             input(type="text", id="name_POST", name="name")
                             br
                             input(type="submit", value="text")
+                    td 
+                        form(onsubmit="event.preventDefault();") 
+                            label(for="city") Your city
+                            input(type="text", id="city", name="city")
+                            br
+                            button(type="submit", onclick="setTime(document.getElementById('city').value)") Click me
                 tr 
                     th(colspan='3', style=' background-color: #04556D;')  Asynchronous requests
                 tr 
