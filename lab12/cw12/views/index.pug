@@ -20,6 +20,37 @@ html(lang='en')
                 color: white;
             }
         script.
+            function getTime(europe_city) {
+                console.log(europe_city);
+                return new Promise((resolve, reject) => {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("GET", `http://worldtimeapi.org/api/timezone/Europe/${europe_city}`, true);
+                    xhr.setRequestHeader("Accept", "application/json");
+                    xhr.addEventListener("load", () => {
+                        if (xhr.status == 200) resolve(JSON.parse(xhr.responseText));
+                        else if (xhr.status == 404) reject(xhr.responseText);
+                        else reject("There was problem other than 404");
+                    });
+                    xhr.addEventListener("error", () => {
+                        reject("There was a problem with this request.");
+                    });
+                    xhr.send();
+                });
+            }
+            function setTime(europe_city){
+                const alert = document.getElementById("alert");
+                const temp = document.getElementById("inside");
+                if (temp != null) {temp.remove();}
+                const in_div = document.createElement("div");
+                in_div.id = "inside";
+                const para = document.createElement("p");
+
+                getTime(europe_city).then(function (result) {para.textContent = JSON.stringify(result,null,"\t")})
+                .catch(function (error) {para.textContent = error});
+
+                in_div.appendChild(para);
+                alert.appendChild(in_div);
+            }
             /**************************************************************************************/
             /* Function that retrieves the content of one of the selected text fields of the form */
             /**************************************************************************************/
@@ -140,8 +171,9 @@ html(lang='en')
             /* response_type ∈ ["text", "json", "xml"]                                            */ 
             /* name - Contents of the form's text box - data that needs to be sent asynchronously */
             /**************************************************************************************/
-            function requestFetchAPI(http_method, response_type, name, show_alert=false) {
+            async function requestFetchAPI(http_method, response_type, name, show_alert=false) {
                 let accept = '*/*';
+                name = encodeURIComponent(name);
 
                 switch(response_type){
                     case 'json':
@@ -154,7 +186,11 @@ html(lang='en')
                 //--------------------------------------------------------------------------
                 // Configuration and execution of the (asynchronous) query to the web server
                 //--------------------------------------------------------------------------
-                fetch('http://localhost:8000/submit', {
+                let temp_return = '';
+                let temp_return_url = '';
+                if (http_method == "GET") {
+                  temp_return_url = `http://localhost:8000/submit?name=${name}`;
+                  temp_return = {
                     method: http_method,
                     credentials: "include", // Do not modify or remove
                     headers: {
@@ -163,8 +199,25 @@ html(lang='en')
                         //****************************************************************************************
                         Accept: accept
                     }
-                }) // a promise is created
-                .then(function (response) { // if the promise is fulfilled
+                  };
+                }
+                else if (http_method == "POST") {
+                  temp_return_url = `http://localhost:8000/submit`;
+                  temp_return = {
+                    method: http_method,
+                    body: `name=${name}`,
+                    credentials: "include", // Do not modify or remove
+                    headers: {
+                        //****************************************************************************************
+                        // What is the acceptable data type—the server part should return data of the given type
+                        //****************************************************************************************
+                        Accept: accept,
+                        'Content-type': 'application/x-www-form-urlencoded',
+                    }
+                  };
+                }
+                try {
+                    const response = await fetch(temp_return_url, temp_return);
                     if (!response.ok)
                         throw Error(response.statusText);
 
@@ -182,16 +235,30 @@ html(lang='en')
                     }
                     console.log(result);
                     console.groupEnd();   
-                    if(show_alert)
-                        window.alert(result);  
+                    if(show_alert){
+                        const alert = document.getElementById("alert");
+                          const temp = document.getElementById("inside");
+                          if (temp != null) {temp.remove();}
+                          const in_div = document.createElement("div");
+                          in_div.id = "inside";
+                          const para = document.createElement("p");
+                          if(response.headers.get('content-type')?.includes('application/json')) {
+                            para.textContent = JSON.stringify(result);
+                          }
+                          else {
+                            para.textContent = result;
+                          }
+                          in_div.appendChild(para);
+                          alert.appendChild(in_div);
+                    }
                     else {
                         results.set(`fetch ${http_method} ${response_type}`, result);
                         dispatchEvent(received);
                     }
-                })
-                .catch(function (error) { // if the promise is rejected
-                    window.alert(error);
-                });
+                }
+                catch (e) {
+                    window.alert(e);
+                }
             }
         script(src="https://unpkg.com/mocha/mocha.js") 
         script(type="module").
