@@ -127,7 +127,7 @@ html(lang='en')
                 xhr.responseType = response_type;  // Type of data received by the 'load' observer
                 xhr.withCredentials = true; // Do not modify or remove
 
-                // sprawdzenie czy jest GET czy POST
+                // GET czy POST
                 if (http_method == "GET") {
                   xhr.open(http_method, `http://localhost:8000/submit?name=${name}`, true);
                 }
@@ -176,9 +176,9 @@ html(lang='en')
                         break;
                 }
                 let tmp = '';
-                let tmp_str = '';
+                let tmp_urlstr = '';
                 if (http_method == "GET") {
-                  tmp_str = `http://localhost:8000/submit?name=${name}`;
+                  tmp_urlstr = `http://localhost:8000/submit?name=${name}`;
                   tmp = {
                     method: http_method,
                     credentials: "include", // Do not modify or remove
@@ -191,7 +191,7 @@ html(lang='en')
                   };
                 }
                 else if (http_method == "POST") {
-                  tmp_str = `http://localhost:8000/submit`;
+                  tmp_urlstr = `http://localhost:8000/submit`;
                   tmp = {
                     method: http_method,
                     body: `name=${name}`,
@@ -209,7 +209,7 @@ html(lang='en')
                 // Configuration and execution of the (asynchronous) query to the web server
                 //--------------------------------------------------------------------------
                 try {
-                    const response = await fetch(tmp_str, tmp);
+                    const response = await fetch(tmp_urlstr, tmp);
                     if (!response.ok)
                         throw Error(response.statusText);
 
